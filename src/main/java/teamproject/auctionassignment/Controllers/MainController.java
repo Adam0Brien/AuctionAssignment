@@ -1,4 +1,4 @@
-package teamproject.auctionassignment;
+package teamproject.auctionassignment.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

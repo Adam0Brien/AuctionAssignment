@@ -8,16 +8,28 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Driver extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("main.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load(), 950, 600);
+
+            //fxmlLoader1.getController();
+            stage.setTitle("Auction House");
+            stage.setScene(scene);
+
+            stage.show();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("Adam");
     }
 
     public static void main(String[] args) {
         launch();
     }
+
 }

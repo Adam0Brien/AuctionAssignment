@@ -1,0 +1,157 @@
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(64, 71, 82);
+    -fx-effect: dropshadow(gaussian, rgba(0,100,255,0.4), 0,0,1,1);
+}
+
+.list-cell:odd {
+    -fx-background-color: #e6e1c1;
+}
+
+.list-cell:even {
+    -fx-background-color: lightgrey;
+}
+
+#boothNumber , #address , #accessibility,#eircode,#name,#email,#floorLevel,#parkingSpaces,#ppsNumber,#centerName,#patientName{
+
+
+    -fx-font-family: "Cambria";
+    -fx-font-size: 12;
+    -fx-border-color: black;
+    -fx-border: gone;
+    -fx-background-color: transparent;
+    -fx-text-fill: #07235c;
+    -fx-prompt-text-fill: black;
+}
+
+#centerChoiceBox,#patientChoiceBox,#timeChoiceBox,#boothChoiceBox,#vaccineChoiceBox{
+
+    -fx-font-family: "Cambria";
+    -fx-font-size: 12;
+    -fx-border-color: black;
+    -fx-border: gone;
+    -fx-background-color: transparent;
+    -fx-text-fill: #07235c;
+    -fx-prompt-text-fill: black;
+}
+
+
+#patientlistView,#centerlistView,#boothListView{
+
+    -fx-font-size: 12;
+    -fx-border: gone;
+    -fx-text-fill: #07235c;
+    -fx-prompt-text-fill: black;
+
+}
+
+
+#back{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#ff0000, #ff2200);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+
+#addCenter,#addBooth,#addPatient, #addAppointment{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#22ff11, #11ff22);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+
+
+#Vaccines{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(deepskyblue, cornflowerblue);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+
+
+#SaveButton{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(forestgreen, lawngreen);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+
+#LoadButton{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(darkgreen, darkolivegreen);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+
+#resetCenter,#resetBooth,#resetPatient,#resetAppointment{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(hotpink, lightsalmon);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+#resetAll{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(red, black);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+}
+
+#refreshCenter,#refreshBooth,#refreshPatient{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(Blue, #34b4eb);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+
+#deleteCenter,#deleteBooth,#deletePatient,#deleteAppointment{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(orange, orangered);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+
+
+
+#cancel{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(darkred, orangered);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1);
+
+}
+
+
+
+
+#timeSlot{
+    -fx-border-color: rgb(0,255,0);
+
+}
+
+.children {
+    -fx-background-color: linear-gradient(#FFFFFF, #000000);
+
+}
+
+.root{
+    -fx-background-size: contain, contain, contain, contain, contain, contain;
+    -fx-background-position: bottom, bottom, bottom, bottom, bottom, bottom;
+
+    -fx-background-image: url(images/bidding.jpg); //*https://www.artstation.com/artwork/WK594N REFERENCE FOR ART IF NEEDED */
+-fx-background-size: cover;
+
+
+
+
+}
+
+

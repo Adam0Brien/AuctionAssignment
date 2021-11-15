@@ -5,15 +5,20 @@ public class Lot {
 private String lotName;
 private String description;
 private String type;
+private int yearsOld;
+private float askingPrice;
 
 
-public Lot(String lotName, String description, String type){
+public Lot(String lotName, String description, String type, int yearsOld, float askingPrice){
     this.lotName = lotName;
 
     this.description = description;
 
     this.type = type;
 
+    this.yearsOld = yearsOld;
+
+    this.askingPrice = askingPrice;
 }
 
     public String getLotName() {

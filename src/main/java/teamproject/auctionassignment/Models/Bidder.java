@@ -1,15 +1,19 @@
 package teamproject.auctionassignment.Models;
 
+import teamproject.auctionassignment.ADT.LinkedList;
+import teamproject.auctionassignment.ADT.LinkedNode;
+
 public class Bidder {
 
     private String bidderName;
     private String address;
     private String phone;
     private String email;
+    private LinkedList bids;
 
 
 
-    public Bidder(String bidderName,String address,String phone,String email){
+    public Bidder(String bidderName, String address, String phone, String email, LinkedList bids){
 
         this.bidderName = bidderName;
 
@@ -18,6 +22,8 @@ public class Bidder {
         this.phone = phone;
 
         this.email = email;
+
+        this.bids = bids;
 
     }
 

@@ -1,6 +1,6 @@
 package teamproject.auctionassignment.Models;
 
-public class Bid {
+public class Bid{
 
 
 }

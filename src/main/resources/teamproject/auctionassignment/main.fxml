@@ -53,13 +53,13 @@
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <TextField fx:id="lotName" layoutX="14.0" layoutY="47.0" promptText="Name" />
-                              <TextField fx:id="Description" layoutX="174.0" layoutY="47.0" promptText="Description" />
+                              <TextField fx:id="description" layoutX="174.0" layoutY="47.0" promptText="Description" />
                               <TextField fx:id="type" layoutX="174.0" layoutY="88.0" promptText="Type" />
-                              <TextField fx:id="age" layoutX="14.0" layoutY="88.0" promptText="Year/date of origin" />
-                              <Button fx:id="addLot" layoutX="154.0" layoutY="173.0" mnemonicParsing="false"  text="Add"/>
+                              <TextField fx:id="yearsOld" layoutX="14.0" layoutY="88.0" promptText="Year/date of origin" />
+                              <Button fx:id="addLot" layoutX="154.0" layoutY="173.0" mnemonicParsing="false"  text="Add" onAction="#addLotDetails"/>
                                <ListView fx:id="lotListView" layoutX="329.0" layoutY="39.0" prefHeight="293.0" prefWidth="298.0" />
                                <Label fx:id="lotListNo" layoutX="369.0" layoutY="336.0" prefHeight="26.0" prefWidth="218.0" text="There are 0 Items up for bid" />
-                              <TextField fx:id="firstBid" layoutX="100.0" layoutY="135.0" promptText="Asking Price" />
+                              <TextField fx:id="askingPrice" layoutX="100.0" layoutY="135.0" promptText="Asking Price" />
                            </children>
                         </AnchorPane>
                      </content>

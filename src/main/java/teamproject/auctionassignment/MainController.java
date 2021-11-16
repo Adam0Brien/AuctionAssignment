@@ -36,7 +36,7 @@ public class MainController {
 
             public void addLotDetails(ActionEvent event) {
             //gui
-            lotListView.getItems().addAll( " "+lotName.getText() +" "+ description.getText() + " " + type.getText());
+            lotListView.getItems().addAll( " "+lotName.getText() +" "+ description.getText() + " " + type.getText() + " " + yearsOld.getText() + " " + askingPrice.getText());
             //backend
             addLot(new Lot(lotName.getText(),description.getText(),type.getText(),yearsOld.anchorProperty().getValue(), askingPrice.anchorProperty().getValue()));
 

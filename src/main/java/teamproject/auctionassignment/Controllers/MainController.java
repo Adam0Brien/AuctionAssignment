@@ -42,7 +42,7 @@ public class MainController {
 
 
             System.out.println(lotName.getText()+"\n"+description.getText()+"\n"+type.getText()+"\n"+yearsOld.getText()+"\n"+askingPrice.getText());
-
+//
     }
 
 

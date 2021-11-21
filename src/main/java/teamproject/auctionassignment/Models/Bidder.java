@@ -13,7 +13,7 @@ public class Bidder {
 
 
 
-    public Bidder(String bidderName, String address, String phone, String email, LinkedList bids){
+    public Bidder(String bidderName, String address, String phone, String email){
 
         this.bidderName = bidderName;
 

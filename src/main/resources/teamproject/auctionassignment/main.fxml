@@ -68,14 +68,15 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="address" layoutX="50.0" layoutY="96.0" promptText="Address" />
-                              <TextField fx:id="telephone" layoutX="50.0" layoutY="147.0" promptText="Telephone" />
-                               <Button fx:id="addBidder" layoutX="68.0" layoutY="253.0" mnemonicParsing="false"  text="Add" />
+                               <TextField fx:id="bidderName" layoutX="51.0" layoutY="57.0" promptText="Name" />
+                              <TextField fx:id="bidderAddress" layoutX="50.0" layoutY="96.0" promptText="Address" />
+                              <TextField fx:id="bidderPhone" layoutX="50.0" layoutY="147.0" promptText="Telephone" />
+                               <Button fx:id="addBidder" layoutX="68.0" layoutY="253.0" mnemonicParsing="false"  text="Add" onAction="#addBidderDetails"/>
                                <Button fx:id="resetBidders" layoutX="125.0" layoutY="259.0" mnemonicParsing="false"  text="Reset" />
                               <ListView fx:id="biddersListView" layoutX="274.0" layoutY="47.0" prefHeight="293.0" prefWidth="298.0" />
-                              <TextField fx:id="email" layoutX="50.0" layoutY="201.0" prefWidth="150.0" promptText="Email" />
+                              <TextField fx:id="bidderEmail" layoutX="50.0" layoutY="201.0" prefWidth="150.0" promptText="Email" />
                             <Label fx:id="bidderListNo" layoutX="334.0" layoutY="340.0" prefHeight="26.0" prefWidth="178.0" text="There are 0 Bidders" />
-                              <TextField layoutX="51.0" layoutY="57.0" promptText="Name" />
+
                            </children>
                         </AnchorPane>
                      </content>
@@ -85,7 +86,7 @@
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <TextField fx:id="bidAmount" layoutX="54.0" layoutY="200.0" promptText="€€€" />
-                               <Button fx:id="bid" layoutX="67.0" layoutY="252.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="109.0" text="Bid" />
+                               <Button fx:id="Bid" layoutX="67.0" layoutY="252.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="109.0" text="Bid" onAction="#addBidsToBidders" />
                                <Button fx:id="resetBids" layoutX="579.0" layoutY="328.0" mnemonicParsing="false"  text="Reset" />
                               <ListView fx:id="bidsListView" layoutX="274.0" layoutY="47.0"  prefHeight="293.0" prefWidth="298.0" />
                                <Label fx:id="bidsListNo" layoutX="300.0" layoutY="340.0" prefHeight="26.0" prefWidth="178.0" text="There are 0 Bids" />

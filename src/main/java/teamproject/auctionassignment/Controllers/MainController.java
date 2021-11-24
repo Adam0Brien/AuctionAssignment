@@ -10,6 +10,7 @@ import teamproject.auctionassignment.ADT.LinkedList;
 import teamproject.auctionassignment.Models.Bid;
 import teamproject.auctionassignment.Models.Bidder;
 import teamproject.auctionassignment.Models.Lot;
+import teamproject.auctionassignment.sort;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -54,7 +55,7 @@ public class MainController {
             @FXML private TextField yearsOld;
             @FXML private TextField askingPrice;
             @FXML private ListView<String> lotListView;
-            @FXML private Button deleteButton;
+
 
 
             public void addLot(Lot lot){
@@ -63,11 +64,10 @@ public class MainController {
 
 
             public void addLotDetails(ActionEvent event) {
-
-
                 Lot lot = new Lot(lotName.getText(),description.getText(),type.getText(),Integer.parseInt(yearsOld.getText()),Integer.parseInt(askingPrice.getText()));
                 //gui
                 lotListView.getItems().add(lot.toString());
+                lotListView2.getItems().add(lot.listViewToString()); // this shows up in the auction house tab
                 //backend
                 addLot(lot);
                 //lotListNo.setText("There are " + numberOfLots() + " lots");
@@ -89,16 +89,12 @@ public class MainController {
                     lotListView.getItems().remove(i);
                     System.out.println(lots.printList());
                     //lotListNo.setText("There are " + numberOfBooths() + " Booths");
-
                 }
-
          }
     }
 
     public void removeAllLots(){
-
          lots.deleteList();
-
     }
 
 
@@ -136,7 +132,7 @@ public class MainController {
                 bidders.deleteList();
             }
 
-    public void removeSelectedBidder(){
+    public void removeSelectedBidder(){ //TODO
         if (bidders.size() != 0)
         { // stops nullPointerException
             for (int i = 0; i < bidders.size(); i++)
@@ -157,7 +153,7 @@ public class MainController {
      * Bid Methods
       */
             @FXML private TextField bidAmount;
-
+            @FXML private ListView lotListView2;  // this is used in addLotDetails the reason its here is because its in the bid class
             @FXML private ListView bidListView;
                     private LocalDate date = LocalDate.now();
                     private LocalTime time = LocalTime.now();
@@ -169,37 +165,27 @@ public class MainController {
             }
     public void addBiddersBid(ActionEvent event){
 
+        bidderChoiceBox.getSelectionModel().getSelectedIndex();
 
         Bid bid = new Bid(Integer.parseInt(bidAmount.getText()), date.toString(), time.toString());
+        bidListView.getItems().add(bidderChoiceBox.getSelectionModel().getSelectedItem() +"\n"+(bid.toString()));
 
-        
-        bidListView.getItems().add(bid.toString());
+
+        if (bids.size() != 0) {
+            lotListView2.getSelectionModel().getSelectedItem();
+            bid.setBidAmount(Integer.parseInt(bidAmount.getText()));  //sets the bidAmount to the one written in the TextField
+
+
+            //we need to add to this method
+            //we need to make it so when you select the lotListView2 it updates the askingPrice.
+            //we also need to make it so you HAVE to select and item from the listview
+            // if this isn't possible we can just use a choiceBox (might be a lot easier but wont look as nice)
+        }
     }
-
-//TODO
-    /**
-     *      Can't seem to get the bidAmount to print to console
-     *      i don't want to change it to a string because we need to be ble to apply
-     *      arithmetic to it later on. this is so we can calculate who has the
-     *      highest bid to determine the winner
-     *
-     *      -Adam
-     */
-//            public void addBidsToBidders(){
-//
-//
-//                addBids(new Bid(Integer.parseInt(bidAmount.getText())));
-//
-//                System.out.println(bids.printList());
-//            }
-
-
 
             public void removeAllBids(){
                 bids.deleteList();
             }
-
-
 
 
 /*
@@ -211,12 +197,8 @@ public class MainController {
     LinkedNode<Bid> Bids =Bid.head;
     while(Bids != null){
         if(Bid.getContents().getBidAmount().contains(
- */
 
-
-
-
-
+*/
 
 }
 

@@ -59,6 +59,14 @@ public class Bidder {
         this.email = email;
     }
 
+    public LinkedList getBids() {
+        return bids;
+    }
+
+    public void setBids(LinkedList bids) {
+        this.bids = bids;
+    }
+
     @Override
     public String toString() {
         return "Bidder{" +

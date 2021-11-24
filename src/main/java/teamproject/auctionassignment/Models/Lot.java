@@ -45,6 +45,31 @@ public Lot(String lotName, String description, String type, int yearsOld, float 
         this.type = type;
     }
 
+    public int getYearsOld() {
+        return yearsOld;
+    }
+
+    public void setYearsOld(int yearsOld) {
+        this.yearsOld = yearsOld;
+    }
+
+    public float getAskingPrice() {
+        return askingPrice;
+    }
+
+    public Object setAskingPrice(float askingPrice) {
+        this.askingPrice = askingPrice;
+        return null;
+    }
+
+    public LinkedList<Bidder> getBidder() {
+        return bidder;
+    }
+
+    public void setBidder(LinkedList<Bidder> bidder) {
+        this.bidder = bidder;
+    }
+
     @Override
     public String toString() {
         return "Lot{" +

@@ -42,7 +42,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@../../../../../../assignment2/src/main/resources/teamproject/auctionassignment/Ca2.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teamproject.auctionassignment.Controllers.MainController">
+<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@Ca2.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teamproject.auctionassignment.Controllers.MainController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -93,7 +93,7 @@
                            <children>
                               <ChoiceBox fx:id="bidderChoiceBox" layoutX="170.0" layoutY="56.0" prefWidth="150.0" />
                               <TextField fx:id="bidAmount" layoutX="171.0" layoutY="113.0" />
-                              <ListView layoutX="419.0" layoutY="31.0" prefHeight="282.0" prefWidth="200.0" />
+                              <ListView fx:id="lotListView2" layoutX="419.0" layoutY="31.0" prefHeight="282.0" prefWidth="200.0" />
                               <Label layoutX="504.0" layoutY="14.0" prefHeight="17.0" prefWidth="29.0" text="Lots" />
                               <Label layoutX="71.0" layoutY="60.0" text="Login" />
                               <Label layoutX="72.0" layoutY="117.0" text="Your Bid" />

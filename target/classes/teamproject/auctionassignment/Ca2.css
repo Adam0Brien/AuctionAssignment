@@ -1,8 +1,6 @@
-.label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: rgb(64, 71, 82);
-    -fx-effect: dropshadow(gaussian, rgba(0,100,255,0.4), 0,0,1,1);
+.label{
+
+    -fx-text-fill: white;
 }
 
 .list-cell:odd {

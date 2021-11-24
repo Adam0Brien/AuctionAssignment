@@ -79,7 +79,7 @@ public class LinkedList<E> implements Iterable<E> {
 //    }
 
 
-    public int listLength()
+    public int size()
     {
         LinkedNode temp = head; // make a copy of the head
         int counter = 0;

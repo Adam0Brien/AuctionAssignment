@@ -6,14 +6,19 @@ import java.time.LocalTime;
 public class Bid{
 
     public int bidAmount;
-    public LocalTime time;
+    public String date;
+    public String time;
 
 
-    public Bid(int bidAmount){
+    public Bid(int bidAmount,String date, String time){
 
         this.bidAmount = bidAmount;
 
+        this.date = date;
+
         this.time = time;
+
+
 
     }
 
@@ -25,18 +30,26 @@ public class Bid{
         this.bidAmount = bidAmount;
     }
 
-    public LocalTime getTime() {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
     @Override
     public String toString() {
         return
-                "Bid" + bidAmount +"\n"+ time;
+                "Bid: " + "€"+bidAmount +"\n"+ date +"\n"+ time;
 
     }
 }

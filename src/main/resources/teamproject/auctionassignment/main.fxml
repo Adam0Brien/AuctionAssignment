@@ -42,7 +42,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@../../../../../../assignment2/src/main/resources/teamproject/auctionassignment/Ca2.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teamproject.auctionassignment.Controllers.MainController">
+<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@../../../../../../assignment2/src/main/resources/teamproject/auctionassignment/Ca2.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teamproject.auctionassignment.Controllers.MainController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -56,10 +56,14 @@
                               <TextField fx:id="description" layoutX="174.0" layoutY="47.0" promptText="Description" />
                               <TextField fx:id="type" layoutX="174.0" layoutY="88.0" promptText="Type" />
                               <TextField fx:id="yearsOld" layoutX="14.0" layoutY="88.0" promptText="Year/date of origin" />
-                              <Button fx:id="addLot" layoutX="154.0" layoutY="173.0" mnemonicParsing="false"  text="Add" onAction="#addLotDetails"/>
+                              <Button fx:id="addLot" layoutX="100.0" layoutY="173.0" mnemonicParsing="false" onAction="#addLotDetails" text="Add" />
                                <ListView fx:id="lotListView" layoutX="329.0" layoutY="39.0" prefHeight="293.0" prefWidth="298.0" />
                                <Label fx:id="lotListNo" layoutX="369.0" layoutY="336.0" prefHeight="26.0" prefWidth="218.0" text="There are 0 Items up for bid" />
                               <TextField fx:id="askingPrice" layoutX="100.0" layoutY="135.0" promptText="Asking Price" />
+                              <Button layoutX="198.0" layoutY="173.0" mnemonicParsing="false" text="Delete" />
+                              <Button layoutX="237.0" layoutY="272.0" mnemonicParsing="false" text="^" />
+                              <TextField layoutX="89.0" layoutY="272.0" promptText="Search" />
+                              <Button layoutX="156.0" layoutY="211.0" mnemonicParsing="false" text="Edit" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -70,39 +74,58 @@
                            <children>
                                <TextField fx:id="bidderName" layoutX="51.0" layoutY="57.0" promptText="Name" />
                               <TextField fx:id="bidderAddress" layoutX="50.0" layoutY="96.0" promptText="Address" />
-                              <TextField fx:id="bidderPhone" layoutX="50.0" layoutY="147.0" promptText="Telephone" />
-                               <Button fx:id="addBidder" layoutX="68.0" layoutY="253.0" mnemonicParsing="false"  text="Add" onAction="#addBidderDetails"/>
-                               <Button fx:id="resetBidders" layoutX="125.0" layoutY="259.0" mnemonicParsing="false"  text="Reset" />
+                              <TextField fx:id="bidderPhone" layoutX="51.0" layoutY="138.0" promptText="Telephone" />
+                               <Button fx:id="addBidder" layoutX="67.0" layoutY="228.0" mnemonicParsing="false" onAction="#addBidderDetails" text="Add" />
+                               <Button fx:id="resetBidders" layoutX="67.0" layoutY="328.0" mnemonicParsing="false" text="Remove all Bidders" />
                               <ListView fx:id="biddersListView" layoutX="274.0" layoutY="47.0" prefHeight="293.0" prefWidth="298.0" />
-                              <TextField fx:id="bidderEmail" layoutX="50.0" layoutY="201.0" prefWidth="150.0" promptText="Email" />
+                              <TextField fx:id="bidderEmail" layoutX="51.0" layoutY="181.0" prefWidth="150.0" promptText="Email" />
                             <Label fx:id="bidderListNo" layoutX="334.0" layoutY="340.0" prefHeight="26.0" prefWidth="178.0" text="There are 0 Bidders" />
+                              <Button layoutX="147.0" layoutY="228.0" mnemonicParsing="false" text="Edit" />
+                              <Button layoutX="81.0" layoutY="293.0" mnemonicParsing="false" onAction="#removeSelectedBidder" text="Delete Bidder" />
 
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Bids">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <Tab text="Auction House">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="bidAmount" layoutX="54.0" layoutY="200.0" promptText="€€€" />
-                               <Button fx:id="Bid" layoutX="67.0" layoutY="252.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="109.0" text="Bid" onAction="#addBidsToBidders" />
-                               <Button fx:id="resetBids" layoutX="579.0" layoutY="328.0" mnemonicParsing="false"  text="Reset" />
-                              <ListView fx:id="bidsListView" layoutX="274.0" layoutY="47.0"  prefHeight="293.0" prefWidth="298.0" />
-                               <Label fx:id="bidsListNo" layoutX="300.0" layoutY="340.0" prefHeight="26.0" prefWidth="178.0" text="There are 0 Bids" />
-                              <ChoiceBox fx:id="bidderBidding" layoutX="54.0" layoutY="150.0" prefWidth="150.0" />
-                              <ChoiceBox fx:id="bidOnLot" layoutX="54.0" layoutY="104.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="bidderChoiceBox" layoutX="170.0" layoutY="56.0" prefWidth="150.0" />
+                              <TextField fx:id="bidAmount" layoutX="171.0" layoutY="113.0" />
+                              <ListView layoutX="419.0" layoutY="31.0" prefHeight="282.0" prefWidth="200.0" />
+                              <Label layoutX="504.0" layoutY="14.0" prefHeight="17.0" prefWidth="29.0" text="Lots" />
+                              <Label layoutX="71.0" layoutY="60.0" text="Login" />
+                              <Label layoutX="72.0" layoutY="117.0" text="Your Bid" />
+                              <Button layoutX="301.0" layoutY="228.0" mnemonicParsing="false" text="Make Bid" onAction="#addBiddersBid" />
+                              <Button layoutX="298.0" layoutY="288.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="73.0" text="Cancel Bid" />
+                              <ListView fx:id="bidListView" layoutX="14.0" layoutY="222.0" prefHeight="133.0" prefWidth="245.0" />
+                              <Label layoutX="88.0" layoutY="199.0" text="Bid,Date and Time" />
                            </children>
                         </AnchorPane>
-                     </content>
+                    </content>
+                  </Tab>
+                  <Tab text="Close Auction">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ListView layoutX="370.0" layoutY="46.0" prefHeight="278.0" prefWidth="200.0" />
+                              <Label layoutX="438.0" layoutY="23.0" text="Bids on Lots" />
+                              <Button layoutX="212.0" layoutY="291.0" mnemonicParsing="false" text="Close Bid" />
+                              <TextField layoutX="26.0" layoutY="46.0" promptText="Unsold Lots" />
+                              <Button layoutX="175.0" layoutY="46.0" mnemonicParsing="false" text="Search" />
+                           </children>
+                        </AnchorPane>
+                    </content>
                   </Tab>
                   <Tab text="Lot History">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <ListView fx:id="searchListView" layoutX="274.0" layoutY="47.0" prefHeight="293.0" prefWidth="298.0" />
-                              <Button layoutX="224.0" layoutY="169.0" mnemonicParsing="false"  prefHeight="24.0" prefWidth="27.0" text="&gt;" />
+                              <Button layoutX="224.0" layoutY="169.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="27.0" text="&gt;" />
                               <TextField fx:id="search" layoutX="75.0" layoutY="169.0" promptText="Search" />
+                              <Label layoutX="392.0" layoutY="21.0" text="Closed Bids" />
                            </children>
                         </AnchorPane>
                      </content>

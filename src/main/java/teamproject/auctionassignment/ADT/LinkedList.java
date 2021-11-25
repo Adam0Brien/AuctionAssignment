@@ -136,7 +136,6 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
-
 //
 //    @Override
 //    public String toString() {

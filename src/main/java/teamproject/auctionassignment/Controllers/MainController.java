@@ -170,15 +170,23 @@ public class MainController {
             }
     public void addBiddersBid(ActionEvent event){
 
+
         bidderChoiceBox.getSelectionModel().getSelectedIndex();
 
         Bid bid = new Bid(Integer.parseInt(bidAmount.getText()), date.toString(), time.toString());
         bidListView.getItems().add(bidderChoiceBox.getSelectionModel().getSelectedItem() +"\n"+(bid.toString()));
 
+//        for (int i = bids.size() - 1; i >=0; i-- ){ //reverse for loop
+//
+//
+//            bidListView.getItems().add(bidderChoiceBox.getSelectionModel().getSelectedItem() +"\n"+(bid.toString()));
+//        }
 
         if (bids.size() != 0) {
             lotListView2.getSelectionModel().getSelectedItem();
             bid.setBidAmount(Integer.parseInt(bidAmount.getText()));  //sets the bidAmount to the one written in the TextField
+
+
 
 
             //we need to add to this method

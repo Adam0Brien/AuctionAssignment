@@ -1,5 +1,7 @@
 package teamproject.auctionassignment.Models;
 
+import teamproject.auctionassignment.ADT.LinkedList;
+
 public class Lot {
 
 private String lotName;
@@ -7,6 +9,7 @@ private String description;
 private String type;
 private int yearsOld;
 private float askingPrice;
+private LinkedList<Bidder> bidder;
 
 
 public Lot(String lotName, String description, String type, int yearsOld, float askingPrice){
@@ -78,4 +81,9 @@ public Lot(String lotName, String description, String type, int yearsOld, float 
                 ", type='" + type + '\'' +
                 '}';
     }
+
+    public String listViewToString(){
+    return  lotName +"\n"+description+"\n"+ askingPrice;
+    }
+
 }

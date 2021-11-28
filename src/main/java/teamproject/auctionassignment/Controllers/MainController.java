@@ -2,10 +2,7 @@ package teamproject.auctionassignment.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import teamproject.auctionassignment.ADT.LinkedList;
 import teamproject.auctionassignment.Models.Bid;
 import teamproject.auctionassignment.Models.Bidder;
@@ -55,7 +52,7 @@ public class MainController {
             @FXML private TextField yearsOld;
             @FXML private TextField askingPrice;
             @FXML private ListView<String> lotListView;
-
+            @FXML private Label lotListNo;
 
 
             public void addLot(Lot lot){
@@ -70,7 +67,7 @@ public class MainController {
                 lotListView2.getItems().add(lot.listViewToString()); // this shows up in the auction house tab
                 //backend
                 addLot(lot);
-                //lotListNo.setText("There are " + numberOfLots() + " lots");
+                lotListNo.setText("There are " + numberOfLots() + " Lots");
             }
 
     public int numberOfLots() {
@@ -79,21 +76,22 @@ public class MainController {
     }
 
 
-    public void deleteLot(ActionEvent event){//TODO
-        if (lots.size() != 0)
-        { // stops nullPointerException
-            for (int i = 0; i < lots.size(); i++)
+    public void deleteLot(ActionEvent event) {//TODO
+        if (lots.size() != 0) { // stops nullPointerException
+            for (int i = 0; i < lots.size(); i++) {
 
-        if(lots.get(i).equals(lotListView.getItems().get(lotListView.getSelectionModel().getSelectedIndex()))){
-            lots.delete(i);
+                if (lotListView.getSelectionModel().getSelectedIndex() == i) {
+                    lots.delete(i);
                     lotListView.getItems().remove(i);
+                    lotListView2.getItems().remove(i);
                     System.out.println(lots.printList());
-                    //lotListNo.setText("There are " + numberOfBooths() + " Booths");
+                    lotListNo.setText("There are " + numberOfLots() + " Lots");
                 }
-         }
+            }
+        }
     }
 
-    public void removeAllLots(){
+    public void removeAllLots(){  // for reset facility
          lots.deleteList();
     }
 
@@ -109,10 +107,11 @@ public class MainController {
             @FXML private TextField bidderAddress;
             @FXML private ListView biddersListView;
             @FXML private ChoiceBox<Object> bidderChoiceBox;
+            @FXML private Label bidderListNo;
 
 
 
-            public void addBidders(Bidder bidder){
+            public void addBidder(Bidder bidder){
                 bidders.addElement(bidder);
             }
 
@@ -123,6 +122,8 @@ public class MainController {
 
                 bidderChoiceBox.getItems().add(bidder.getBidderName());
 
+                addBidder(bidder);
+                bidderListNo.setText("There are " + numberOfBidders() + " Bidders");
             }
 
 
@@ -132,19 +133,23 @@ public class MainController {
                 bidders.deleteList();
             }
 
-    public void removeSelectedBidder(){ //TODO
-        if (bidders.size() != 0)
-        { // stops nullPointerException
-            for (int i = 0; i < bidders.size(); i++)
+    public int numberOfBidders() {
+        int x = bidders.size();
+        return x;
+    }
 
-                if(bidders.get(i).toString().equals(biddersListView.getItems().get(biddersListView.getSelectionModel().getSelectedIndex())))
-                {
+    public void removeBidder(ActionEvent event) {
+        if (bidders.size() != 0) { // stops nullPointerException
+            for (int i = 0; i < bidders.size(); i++) {
+
+                if (biddersListView.getSelectionModel().getSelectedIndex() == i) {
                     bidders.delete(i);
                     biddersListView.getItems().remove(i);
                     System.out.println(bidders.printList());
-
+                    bidderChoiceBox.getItems().remove(i); //removes bidders from ChoiceBox in auction house
+                    bidderListNo.setText("There are " + numberOfBidders() + " Bidders");
                 }
-
+            }
         }
     }
 

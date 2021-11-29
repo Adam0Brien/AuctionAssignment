@@ -2,15 +2,22 @@ package teamproject.auctionassignment.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import teamproject.auctionassignment.ADT.LinkedList;
+import teamproject.auctionassignment.Driver;
 import teamproject.auctionassignment.Models.Bid;
 import teamproject.auctionassignment.Models.Bidder;
 import teamproject.auctionassignment.Models.Lot;
 import teamproject.auctionassignment.sort;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 
 
 /*
@@ -28,7 +35,7 @@ Bid
  */
 
 
-public class MainController {
+public class MainController implements Serializable {
 
         public MainController() {
 
@@ -200,6 +207,53 @@ public class MainController {
                 bids.deleteList();
             }
 
+
+    /**
+     *
+     * Bidder Info helper methods
+     *
+     */
+    @FXML private Label bidderNameInfo;
+    public void bidderInfoSetName(){
+        for (int i = 0; i < bidders.size(); i++) {
+
+            if (biddersListView.getSelectionModel().getSelectedIndex() == i) {
+                //Make it so when you select the index it takes that indexes information and sets it to the bidder
+                //info scene
+
+            }
+        }
+    }
+
+
+    public void bidderInfo(MouseEvent event) throws IOException {
+
+                if (event.getClickCount() == 2) {
+                    for (int i = 0; i < bidders.size(); i++) {
+
+                        if (biddersListView.getSelectionModel().getSelectedIndex() == i) {
+
+                            FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("bidderInfo.fxml"));
+                            Scene scene = new Scene(fxmlLoader.load(), 950, 600);
+                            Driver.stage.setScene(scene);
+
+
+
+
+                        }
+                    }
+                }
+            }
+
+            public void exitBidderInfo(ActionEvent event) throws IOException, ClassNotFoundException {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("main.fxml"));
+
+                Scene scene = new Scene(fxmlLoader.load(), 950, 600);
+
+                Driver.stage.setScene(scene);
+
+            }
 
 /*
     public void searchforBid(ActionEvent ActionEvent){

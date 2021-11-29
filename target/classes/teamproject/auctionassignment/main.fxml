@@ -84,7 +84,7 @@
                               <TextField fx:id="bidderPhone" layoutX="51.0" layoutY="138.0" promptText="Telephone" />
                                <Button fx:id="addBidder" layoutX="67.0" layoutY="228.0" mnemonicParsing="false" onAction="#addBidderDetails" text="Add" />
                                <Button fx:id="resetBidders" layoutX="67.0" layoutY="328.0" mnemonicParsing="false" text="Remove all Bidders" onAction="#removeAllBidders" />
-                              <ListView fx:id="biddersListView" layoutX="274.0" layoutY="47.0" prefHeight="293.0" prefWidth="298.0" />
+                              <ListView fx:id="biddersListView" layoutX="274.0" layoutY="47.0" prefHeight="293.0" prefWidth="298.0" onMouseClicked="#bidderInfo"/>
                               <TextField fx:id="bidderEmail" layoutX="51.0" layoutY="181.0" prefWidth="150.0" promptText="Email" />
                             <Label fx:id="bidderListNo" layoutX="334.0" layoutY="340.0" prefHeight="26.0" prefWidth="178.0" text="There are 0 Bidders" />
                               <Button layoutX="147.0" layoutY="228.0" mnemonicParsing="false" text="Edit" />

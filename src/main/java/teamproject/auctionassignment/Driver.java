@@ -9,9 +9,14 @@ import java.io.IOException;
 
 public class Driver extends Application {
 
+    public static Stage stage;
+
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage mainStage) throws IOException {
         try{
+
+            stage = mainStage;
+
             FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("main.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 950, 600);
@@ -33,5 +38,6 @@ public class Driver extends Application {
     public static void main(String[] args) {
         launch();
     }
+
 
 }

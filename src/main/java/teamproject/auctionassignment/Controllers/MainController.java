@@ -42,8 +42,14 @@ public class MainController implements Serializable {
                 this.lots = new LinkedList<Lot>();
                 this.bidders = new LinkedList<Bidder>();
                 this.bids = new LinkedList<Bid>();
+
+
         }
 
+
+        public void initialize(){
+
+        }
 
     /**
      *
@@ -112,7 +118,7 @@ public class MainController implements Serializable {
             @FXML private TextField bidderPhone;
             @FXML private TextField bidderEmail;
             @FXML private TextField bidderAddress;
-            @FXML private ListView biddersListView;
+            @FXML private ListView<Bidder> biddersListView;
             @FXML private ChoiceBox<Object> bidderChoiceBox;
             @FXML private Label bidderListNo;
 
@@ -125,12 +131,13 @@ public class MainController implements Serializable {
             public void addBidderDetails(ActionEvent event){
 
                 Bidder bidder = new Bidder(bidderName.getText(), bidderAddress.getText() , bidderPhone.getText() , bidderEmail.getText());
-                biddersListView.getItems().add(bidder.toString());
+                biddersListView.getItems().add(bidder);
 
                 bidderChoiceBox.getItems().add(bidder.getBidderName());
 
                 addBidder(bidder);
                 bidderListNo.setText("There are " + numberOfBidders() + " Bidders");
+
             }
 
 
@@ -158,6 +165,58 @@ public class MainController implements Serializable {
                 }
             }
         }
+    }
+
+    /**
+     *
+     * Bidder Info helper methods
+     *
+     */
+
+    @FXML public TextField setBidderName;
+    @FXML public TextField setBidderAddress;
+    @FXML public TextField setBidderPhoneNumber;
+    @FXML public TextField setBidderEmail;
+
+    private static Bidder bidder;
+
+
+
+
+
+    public void bidderInfo(MouseEvent event) throws IOException {
+
+        if (event.getClickCount() == 2) {
+           // for (int i = 0; i < bidders.size(); i++) {
+
+              //  if (biddersListView.getSelectionModel().getSelectedIndex() == i) {
+
+                    bidder = biddersListView.getItems().get(biddersListView.getSelectionModel().getSelectedIndex());
+
+
+
+                    setBidderName.setText(bidder.getBidderName());
+                    setBidderAddress.setText(bidder.getAddress());
+                    setBidderEmail.setText(bidder.getEmail());
+                    setBidderPhoneNumber.setText(bidder.getPhone());
+
+
+
+                    Driver.stage.setScene(Driver.bidderInfo);
+
+
+
+
+                }
+          //  }
+       // }
+    }
+
+    public void exitBidderInfo(ActionEvent event) throws IOException, ClassNotFoundException {
+
+
+        Driver.stage.setScene(Driver.mainScene);
+
     }
 
 
@@ -208,52 +267,7 @@ public class MainController implements Serializable {
             }
 
 
-    /**
-     *
-     * Bidder Info helper methods
-     *
-     */
-    @FXML private Label bidderNameInfo;
-    public void bidderInfoSetName(){
-        for (int i = 0; i < bidders.size(); i++) {
 
-            if (biddersListView.getSelectionModel().getSelectedIndex() == i) {
-                //Make it so when you select the index it takes that indexes information and sets it to the bidder
-                //info scene
-
-            }
-        }
-    }
-
-
-    public void bidderInfo(MouseEvent event) throws IOException {
-
-                if (event.getClickCount() == 2) {
-                    for (int i = 0; i < bidders.size(); i++) {
-
-                        if (biddersListView.getSelectionModel().getSelectedIndex() == i) {
-
-                            FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("bidderInfo.fxml"));
-                            Scene scene = new Scene(fxmlLoader.load(), 950, 600);
-                            Driver.stage.setScene(scene);
-
-
-
-
-                        }
-                    }
-                }
-            }
-
-            public void exitBidderInfo(ActionEvent event) throws IOException, ClassNotFoundException {
-
-                FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("main.fxml"));
-
-                Scene scene = new Scene(fxmlLoader.load(), 950, 600);
-
-                Driver.stage.setScene(scene);
-
-            }
 
 /*
     public void searchforBid(ActionEvent ActionEvent){

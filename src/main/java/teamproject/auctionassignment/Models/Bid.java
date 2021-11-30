@@ -52,4 +52,6 @@ public class Bid{
                 "Bid: " + "€"+bidAmount +"\n"+ date +"\n"+ time;
 
     }
+
+
 }

@@ -105,7 +105,7 @@
                               <Label fx:id="LoginLabel" layoutX="71.0" layoutY="60.0" text="Login" />
                               <Label fx:id="YourBidLabel" layoutX="72.0" layoutY="117.0" text="Your Bid" />
                               <Button layoutX="301.0" layoutY="228.0" mnemonicParsing="false" onAction="#addBiddersBid" text="Make Bid" />
-                              <Button layoutX="298.0" layoutY="288.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="73.0" text="Cancel Bid" />
+                              <Button layoutX="298.0" layoutY="288.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="73.0" text="Cancel Bid" onAction="#deleteBid"/>
                               <ListView fx:id="bidListView" layoutX="14.0" layoutY="222.0" prefHeight="133.0" prefWidth="245.0" />
                               <Label fx:id="BidDateAndTimeLabel" layoutX="88.0" layoutY="199.0" text="Bid,Date and Time" />
                            </children>
@@ -116,7 +116,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ListView layoutX="370.0" layoutY="46.0" prefHeight="278.0" prefWidth="200.0" />
+                              <ListView fx:id="lotsAndBids" layoutX="370.0" layoutY="46.0" prefHeight="278.0" prefWidth="200.0" />
                               <Label fx:id="BidsOnLotsLabel" layoutX="438.0" layoutY="23.0" text="Bids on Lots" />
                               <Button layoutX="212.0" layoutY="291.0" mnemonicParsing="false" text="Close Bid" />
                               <TextField layoutX="26.0" layoutY="46.0" promptText="Unsold Lots" />
@@ -130,7 +130,7 @@
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <ListView fx:id="searchListView" layoutX="274.0" layoutY="47.0" prefHeight="293.0" prefWidth="298.0" />
-                              <Button layoutX="224.0" layoutY="169.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="27.0" text="&gt;" />
+                              <Button layoutX="224.0" layoutY="169.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="27.0" text="&gt;" onAction="#searchLots" />
                               <TextField fx:id="search" layoutX="75.0" layoutY="169.0" promptText="Search" />
                               <Label fx:id="ClosedBidsLabel" layoutX="392.0" layoutY="21.0" text="Closed Bids" />
                            </children>

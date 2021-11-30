@@ -4,25 +4,25 @@ import teamproject.auctionassignment.ADT.LinkedList;
 
 public class Lot {
 
-private String lotName;
-private String description;
-private String type;
-private int yearsOld;
-private float askingPrice;
-private LinkedList<Bidder> bidder;
+    private String lotName;
+    private String description;
+    private String type;
+    private int yearsOld;
+    private float askingPrice;
+    private LinkedList<Bidder> bidder;
 
 
-public Lot(String lotName, String description, String type, int yearsOld, float askingPrice){
-    this.lotName = lotName;
+    public Lot(String lotName, String description, String type, int yearsOld, float askingPrice) {
+        this.lotName = lotName;
 
-    this.description = description;
+        this.description = description;
 
-    this.type = type;
+        this.type = type;
 
-    this.yearsOld = yearsOld;
+        this.yearsOld = yearsOld;
 
-    this.askingPrice = askingPrice;
-}
+        this.askingPrice = askingPrice;
+    }
 
     public String getLotName() {
         return lotName;
@@ -82,8 +82,9 @@ public Lot(String lotName, String description, String type, int yearsOld, float 
                 '}';
     }
 
-    public String listViewToString(){
-    return  lotName +"\n"+description+"\n"+ askingPrice;
+    public String listViewToString() {
+        return lotName + "\n" + description + "\n" + askingPrice;
     }
+
 
 }

@@ -1,16 +1,24 @@
-.label{
+
+
+#lotListNo,#bidderListNo, #BidDateAndTimeLabel , #BidsOnLotsLabel,#ClosedBidsLabel ,#LoginLabel,#YourBidLabel,#LotsLabel{
 
     -fx-text-fill: white;
 }
 
+
+#bidderChoiceBox{
+    -fx-text-fill: black;
+}
 .list-cell:odd {
-    -fx-background-color: #e6e1c1;
+    -fx-background-color: #a063eb;
 }
 
 .list-cell:even {
-    -fx-background-color: lightgrey;
+    -fx-background-color: #7c4bb8 ;
 }
 
+
+/*
 #boothNumber , #accessibility,#eircode,#name,#floorLevel,#parkingSpaces,#ppsNumber,#centerName,#patientName{
 
 
@@ -23,15 +31,15 @@
     -fx-prompt-text-fill: black;
 }
 
-#centerChoiceBox,#patientChoiceBox,#timeChoiceBox,#boothChoiceBox,#vaccineChoiceBox{
+#centerChoiceBox,#patientChoiceBox,#timeChoiceBox,#boothChoiceBox,#vaccineChoiceBox , #bidderChoiceBox{
 
     -fx-font-family: "Cambria";
     -fx-font-size: 12;
-    -fx-border-color: black;
-    -fx-border: gone;
-    -fx-background-color: transparent;
-    -fx-text-fill: #07235c;
-    -fx-prompt-text-fill: black;
+
+    -fx-text-fill: black;
+
+
+
 }
 
 
@@ -135,10 +143,7 @@
 
 }
 
-.children {
-    -fx-background-color: linear-gradient(#FFFFFF, #000000);
-
-}
+*/
 
 .root{
     -fx-background-size: contain, contain, contain, contain, contain, contain;

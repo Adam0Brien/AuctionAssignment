@@ -25,7 +25,7 @@ public class Driver extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("main.fxml"));
             fxmlLoader.setController(MainController);
 
-             mainScene = new Scene(fxmlLoader.load(), 950, 600);
+            mainScene = new Scene(fxmlLoader.load(), 950, 600);
 
 
             FXMLLoader fxmlLoader1 = new FXMLLoader(Driver.class.getResource("bidderInfo.fxml"));

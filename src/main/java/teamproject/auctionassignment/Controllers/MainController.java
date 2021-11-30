@@ -77,7 +77,7 @@ public class MainController implements Serializable {
                 Lot lot = new Lot(lotName.getText(),description.getText(),type.getText(),Integer.parseInt(yearsOld.getText()),Integer.parseInt(askingPrice.getText()));
                 //gui
                 lotListView.getItems().add(lot.toString());
-                lotListView2.getItems().add(lot.listViewToString()); // this shows up in the auction house tab
+                lotListView2.getItems().add(lot); // this shows up in the auction house tab
                 //backend
                 addLot(lot);
                 lotListNo.setText("There are " + numberOfLots() + " Lots");
@@ -195,10 +195,11 @@ public class MainController implements Serializable {
 
 
 
-                    setBidderName.setText(bidder.getBidderName());
+                    setBidderName.setText(bidder.getBidderName()); //displays bidder info when page is brought up
                     setBidderAddress.setText(bidder.getAddress());
                     setBidderEmail.setText(bidder.getEmail());
                     setBidderPhoneNumber.setText(bidder.getPhone());
+
 
 
 
@@ -219,48 +220,87 @@ public class MainController implements Serializable {
 
     }
 
+    public void editBidder(ActionEvent event){
+
+
+
+
+                bidderName.setText(setBidderName.getText());
+                bidderAddress.setText(setBidderAddress.getText());
+                bidderPhone.setText(setBidderPhoneNumber.getText());
+                bidderEmail.setText(setBidderEmail.getText());
+
+
+        if (bidders.size() != 0) { // stops nullPointerException
+            for (int i = 0; i < bidders.size(); i++) {
+
+                if (biddersListView.getSelectionModel().getSelectedIndex() == i) {
+                    //changes bidders info once edit button is hit
+                    bidders.get(i).setBidderName(setBidderName.getText());
+                    bidders.get(i).setAddress(setBidderAddress.getText());
+                    bidders.get(i).setEmail(setBidderEmail.getText());
+                    bidders.get(i).setPhone(setBidderPhoneNumber.getText());
+
+                    System.out.println(bidders.printList());
+
+                    // removes bidder and adds back the new bidderDetails
+
+                    //works well but not with multiple bidders
+                    biddersListView.getItems().remove(bidder);  // make it, so it takes the selected bidder and edits them
+                    biddersListView.getItems().add(bidder);
+
+                    //make a method to delete the bidder that has been edited
+                    bidderChoiceBox.getItems().add(bidder.getBidderName());
+
+                }
+            }
+        }
+            }
+
+
 
     /**
      * Bid Methods
       */
             @FXML private TextField bidAmount;
-            @FXML private ListView lotListView2;  // this is used in addLotDetails the reason its here is because its in the bid class
+            @FXML private ListView<Lot> lotListView2;  // this is used in addLotDetails the reason its here is because its in the bid class
             @FXML private ListView bidListView;
                     private LocalDate date = LocalDate.now();
                     private LocalTime time = LocalTime.now();
 
 
+
+
             public LinkedList<Bid> bids;
             public void addBids(Bid bid){
                 bids.addElement(bid);
+
             }
+
+    //we need to add to this method
+    //we need to make it so when you select the lotListView2 it updates the askingPrice.
+    //we also need to make it so you HAVE to select and item from the listview
+    // if this isn't possible we can just use a choiceBox (might be a lot easier but wont look as nice)
     public void addBiddersBid(ActionEvent event){
-
-
-        bidderChoiceBox.getSelectionModel().getSelectedIndex();
-
         Bid bid = new Bid(Integer.parseInt(bidAmount.getText()), date.toString(), time.toString());
-        bidListView.getItems().add(bidderChoiceBox.getSelectionModel().getSelectedItem() +"\n"+(bid.toString()));
 
-//        for (int i = bids.size() - 1; i >=0; i-- ){ //reverse for loop
-//
-//
-//            bidListView.getItems().add(bidderChoiceBox.getSelectionModel().getSelectedItem() +"\n"+(bid.toString()));
-//        }
+        for (int i = 0; i < bidders.size(); i++) {
+            if (lotListView2.getSelectionModel().getSelectedIndex() == i) {
+                bidderChoiceBox.getSelectionModel().getSelectedIndex();
 
-        if (bids.size() != 0) {
-            lotListView2.getSelectionModel().getSelectedItem();
-            bid.setBidAmount(Integer.parseInt(bidAmount.getText()));  //sets the bidAmount to the one written in the TextField
+                bidListView.getItems().add(bidderChoiceBox.getSelectionModel().getSelectedItem() +
 
-
-
-
-            //we need to add to this method
-            //we need to make it so when you select the lotListView2 it updates the askingPrice.
-            //we also need to make it so you HAVE to select and item from the listview
-            // if this isn't possible we can just use a choiceBox (might be a lot easier but wont look as nice)
+                        " is bidding on "+ lotListView2.getSelectionModel().getSelectedItem().getLotName() + "\n"+(bid.toString()));
+            }
         }
-    }
+
+
+//
+//        if (bids.size() != 0) {
+//            lotListView2.getSelectionModel().getSelectedItem();
+//            bid.setBidAmount(Integer.parseInt(bidAmount.getText()));  //sets the bidAmount to the one written in the TextField
+        }
+
 
             public void removeAllBids(){
                 bids.deleteList();

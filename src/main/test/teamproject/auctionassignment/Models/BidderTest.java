@@ -55,6 +55,12 @@ class BidderTest {
             assertEquals("90 Williams Street",validBidder.getAddress());
         }
 
+
+        @Test
+        void testDelete(){
+
+
+        }
 //        @Test
 //        void getPhone() {
 //        }

@@ -1,0 +1,12 @@
+<object-stream>
+  <teamproject.auctionassignment.ADT.LinkedList>
+    <head>
+      <contents class="teamproject.auctionassignment.Models.Bidder">
+        <bidderName>adam</bidderName>
+        <address>a</address>
+        <phone>a</phone>
+        <email>a@gmail.com</email>
+      </contents>
+    </head>
+  </teamproject.auctionassignment.ADT.LinkedList>
+</object-stream>

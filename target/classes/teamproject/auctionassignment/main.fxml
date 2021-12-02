@@ -62,15 +62,16 @@
                                <ListView fx:id="lotListView" layoutX="329.0" layoutY="39.0" prefHeight="293.0" prefWidth="298.0" />
                                <Label fx:id="lotListNo" layoutX="369.0" layoutY="336.0" prefHeight="26.0" prefWidth="218.0" text="There are 0 Items up for bid" />
                               <TextField fx:id="askingPrice" layoutX="100.0" layoutY="135.0" promptText="Asking Price" />
-                              <Button fx:id="deleteLot" layoutX="198.0" layoutY="173.0" mnemonicParsing="false" text="Delete" onAction="#deleteLot"/>
+                              <Button fx:id="deleteLot" layoutX="198.0" layoutY="173.0" mnemonicParsing="false" onAction="#deleteLot" text="Delete" />
                               <Button layoutX="237.0" layoutY="272.0" mnemonicParsing="false" text="^" />
-                              <TextField layoutX="89.0" layoutY="272.0" promptText="Search" />
+                              <TextField fx:id="searchLots" layoutX="89.0" layoutY="272.0" promptText="Search" />
                               <Button layoutX="156.0" layoutY="211.0" mnemonicParsing="false" text="Edit" />
                               <ImageView fitHeight="53.0" fitWidth="200.0" layoutX="75.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@images/logo.jpg" />
                                  </image>
                               </ImageView>
+
                            </children>
                         </AnchorPane>
                      </content>
@@ -83,12 +84,12 @@
                               <TextField fx:id="bidderAddress" layoutX="50.0" layoutY="96.0" promptText="Address" />
                               <TextField fx:id="bidderPhone" layoutX="51.0" layoutY="138.0" promptText="Telephone" />
                                <Button fx:id="addBidder" layoutX="67.0" layoutY="228.0" mnemonicParsing="false" onAction="#addBidderDetails" text="Add" />
-                               <Button fx:id="resetBidders" layoutX="67.0" layoutY="328.0" mnemonicParsing="false" text="Remove all Bidders" onAction="#removeAllBidders" />
-                              <ListView fx:id="biddersListView" layoutX="274.0" layoutY="47.0" prefHeight="293.0" prefWidth="298.0" onMouseClicked="#bidderInfo"/>
+                               <Button fx:id="resetBidders" layoutX="67.0" layoutY="328.0" mnemonicParsing="false" onAction="#removeAllBidders" text="Remove all Bidders" />
+                              <ListView fx:id="biddersListView" layoutX="274.0" layoutY="47.0" onMouseClicked="#bidderInfo" prefHeight="293.0" prefWidth="298.0" />
                               <TextField fx:id="bidderEmail" layoutX="51.0" layoutY="181.0" prefWidth="150.0" promptText="Email" />
                             <Label fx:id="bidderListNo" layoutX="334.0" layoutY="340.0" prefHeight="26.0" prefWidth="178.0" text="There are 0 Bidders" />
                               <Button layoutX="147.0" layoutY="228.0" mnemonicParsing="false" text="Edit" />
-                              <Button fx:id="removeBidder" layoutX="81.0" layoutY="293.0" mnemonicParsing="false" text="Delete Bidder" onAction="#removeBidder"/>
+                              <Button fx:id="removeBidder" layoutX="81.0" layoutY="293.0" mnemonicParsing="false" onAction="#removeBidder" text="Delete Bidder" />
 
                            </children>
                         </AnchorPane>
@@ -105,7 +106,7 @@
                               <Label fx:id="LoginLabel" layoutX="71.0" layoutY="60.0" text="Login" />
                               <Label fx:id="YourBidLabel" layoutX="72.0" layoutY="117.0" text="Your Bid" />
                               <Button layoutX="301.0" layoutY="228.0" mnemonicParsing="false" onAction="#addBiddersBid" text="Make Bid" />
-                              <Button layoutX="298.0" layoutY="288.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="73.0" text="Cancel Bid" />
+                              <Button layoutX="298.0" layoutY="288.0" mnemonicParsing="false" onAction="#deleteBid" prefHeight="24.0" prefWidth="73.0" text="Cancel Bid" />
                               <ListView fx:id="bidListView" layoutX="14.0" layoutY="222.0" prefHeight="133.0" prefWidth="245.0" />
                               <Label fx:id="BidDateAndTimeLabel" layoutX="88.0" layoutY="199.0" text="Bid,Date and Time" />
                            </children>
@@ -116,7 +117,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ListView layoutX="370.0" layoutY="46.0" prefHeight="278.0" prefWidth="200.0" />
+                              <ListView fx:id="lotsAndBids" layoutX="370.0" layoutY="46.0" prefHeight="278.0" prefWidth="200.0" />
                               <Label fx:id="BidsOnLotsLabel" layoutX="438.0" layoutY="23.0" text="Bids on Lots" />
                               <Button layoutX="212.0" layoutY="291.0" mnemonicParsing="false" text="Close Bid" />
                               <TextField layoutX="26.0" layoutY="46.0" promptText="Unsold Lots" />
@@ -136,6 +137,16 @@
                            </children>
                         </AnchorPane>
                      </content>
+                  </Tab>
+                  <Tab text="Persistance">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button layoutX="88.0" layoutY="83.0" mnemonicParsing="false" text="Save" onAction="#saveBidder" />
+                              <Button layoutX="150.0" layoutY="83.0" mnemonicParsing="false" text="Load" onAction="#loadBidder" />
+                           </children>
+                        </AnchorPane>
+                    </content>
                   </Tab>
               </tabs>
             </TabPane>

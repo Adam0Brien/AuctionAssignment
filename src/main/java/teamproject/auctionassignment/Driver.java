@@ -19,6 +19,8 @@ public class Driver extends Application {
     @Override
     public void start(Stage mainStage) throws IOException {
         try{
+
+
             MainController = new MainController();
             stage = mainStage;
 

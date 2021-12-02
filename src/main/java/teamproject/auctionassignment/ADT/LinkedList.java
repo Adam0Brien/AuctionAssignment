@@ -136,6 +136,11 @@ public class LinkedList<E> implements Iterable<E> {
 
     }
 
+//    public int indexOf(E lot) {
+//
+//
+//    }
+
 //
 //    @Override
 //    public String toString() {

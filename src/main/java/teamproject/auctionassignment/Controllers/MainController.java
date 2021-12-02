@@ -1,5 +1,14 @@
 package teamproject.auctionassignment.Controllers;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import com.thoughtworks.xstream.security.AnyTypePermission;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +22,10 @@ import teamproject.auctionassignment.Models.Bidder;
 import teamproject.auctionassignment.Models.Lot;
 import teamproject.auctionassignment.sort;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 
 
@@ -35,7 +44,7 @@ Bid
  */
 
 
-public class MainController implements Serializable {
+public class MainController {
 
     public MainController() {
 
@@ -118,7 +127,7 @@ public class MainController implements Serializable {
      * Bidder methods
      */
 
-    public LinkedList<Bidder> bidders;
+    public static LinkedList<Bidder> bidders;
     @FXML
     private TextField bidderName;
     @FXML
@@ -332,40 +341,52 @@ public class MainController implements Serializable {
      * Searching for unsold bids
      */
 
+
+    /**
+     *
+     * Save and loading
+     *
+     */
+
+    @SuppressWarnings("unchecked")
+    public void loadBidder(ActionEvent event) throws Exception
+    {
+        try {
+            XStream xstream = new XStream(new DomDriver());
+            xstream.addPermission(AnyTypePermission.ANY);
+            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("bidders.xml"));
+            bidders = (LinkedList<Bidder>) is.readObject();
+            is.close();
+
+
+
+
+
+
+
+        }catch (Exception e){
+            System.out.println("Error in reading this file : " + e);
+        }
+    }
+
+    public void saveBidder(ActionEvent event) throws Exception {
+        try {
+            XStream xstream = new XStream(new DomDriver());
+
+            ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("bidders.xml"));
+
+            out.writeObject(bidders);
+            out.close();
+            } catch (Exception e) {
+            System.out.println("Error writing this file : " + e);
+        }
+    }
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*

@@ -1,7 +1,6 @@
 package teamproject.auctionassignment.Models;
 
 import teamproject.auctionassignment.ADT.LinkedList;
-import teamproject.auctionassignment.ADT.LinkedNode;
 
 public class Bidder {
 

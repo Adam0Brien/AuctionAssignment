@@ -8,7 +8,7 @@ public class Bidder {
     private String address;
     private String phone;
     private String email;
-    private LinkedList bids;
+    public LinkedList<Bid> bidList = new LinkedList<>();
 
 
 
@@ -22,7 +22,7 @@ public class Bidder {
 
         this.email = email;
 
-        this.bids = bids;
+
 
     }
 
@@ -58,13 +58,6 @@ public class Bidder {
         this.email = email;
     }
 
-    public LinkedList getBids() {
-        return bids;
-    }
-
-    public void setBids(LinkedList bids) {
-        this.bids = bids;
-    }
 
     @Override
     public String toString() {
@@ -76,9 +69,8 @@ public class Bidder {
                 '}';
     }
 
-    public String test(){
-
-        // literally just putting this method here to update the class for a push
-        return "wow";
+    public void addBid(Bid newBid) {
+        bidList.addElement(newBid);
     }
+
 }

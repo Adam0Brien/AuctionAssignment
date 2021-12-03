@@ -145,8 +145,8 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button layoutX="88.0" layoutY="83.0" mnemonicParsing="false" onAction="#saveBidder" text="Save" />
-                              <Button layoutX="150.0" layoutY="83.0" mnemonicParsing="false" onAction="#loadBidder" text="Load" />
+                              <Button layoutX="88.0" layoutY="83.0" mnemonicParsing="false" onAction="#save" text="Save" />
+                              <Button layoutX="150.0" layoutY="83.0" mnemonicParsing="false" onAction="#load" text="Load" />
                            </children>
                         </AnchorPane>
                     </content>

@@ -1,5 +1,7 @@
 package teamproject.auctionassignment.Models;
 
+import java.time.LocalDate;
+
 public class Bid{
 
     public int bidAmount;
@@ -7,7 +9,7 @@ public class Bid{
     public String time;
 
 
-    public Bid(int bidAmount,String date, String time){
+    public Bid(int bidAmount, String date, String time){
 
         this.bidAmount = bidAmount;
 

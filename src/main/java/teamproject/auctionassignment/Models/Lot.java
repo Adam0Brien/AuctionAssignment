@@ -9,7 +9,7 @@ public class Lot {
     private String type;
     private int yearsOld;
     private float askingPrice;
-    private LinkedList<Bidder> bidder;
+
 
 
     public Lot(String lotName, String description, String type, int yearsOld, float askingPrice) {

@@ -379,9 +379,6 @@ public class MainController {
 
 
 
-
-
-
     /**
      * Searching for unsold bids
      */
@@ -425,6 +422,8 @@ public class MainController {
     private TextField bidderSearch;
     @FXML
     private ListView searchBidderList;
+
+
 
 //    public void searchBidder(ActionEvent event) {
 //

@@ -1,8 +1,5 @@
 package teamproject.auctionassignment.Models;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 public class Bid{
 
     public int bidAmount;
@@ -45,6 +42,9 @@ public class Bid{
     public void setTime(String time) {
         this.time = time;
     }
+
+
+
 
     @Override
     public String toString() {

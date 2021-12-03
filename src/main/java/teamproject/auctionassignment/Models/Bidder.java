@@ -75,4 +75,10 @@ public class Bidder {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    public String test(){
+
+        // literally just putting this method here to update the class for a push
+        return "wow";
+    }
 }

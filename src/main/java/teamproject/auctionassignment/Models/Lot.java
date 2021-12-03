@@ -23,6 +23,8 @@ public class Lot {
 
         this.askingPrice = askingPrice;
 
+
+
     }
 
     public String getLotName() {
@@ -66,13 +68,7 @@ public class Lot {
         return null;
     }
 
-//    public LinkedList<Bidder> getBidder() {
-//        return bidder;
-//    }
-//
-//    public void setBidder(LinkedList<Bidder> bidder) {
-//        this.bidder = bidder;
-//    }
+
 
     @Override
     public String toString() {

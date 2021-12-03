@@ -1,0 +1,33 @@
+<object-stream>
+  <teamproject.auctionassignment.ADT.LinkedList>
+    <head>
+      <contents class="teamproject.auctionassignment.Models.Bidder">
+        <bidderName>a</bidderName>
+        <address>a</address>
+        <phone>a</phone>
+        <email>a</email>
+        <bidList>
+          <head>
+            <contents class="teamproject.auctionassignment.Models.Bid">
+              <bidAmount>100</bidAmount>
+              <date>2021-12-03</date>
+              <time>16:47:53.381392600</time>
+            </contents>
+          </head>
+        </bidList>
+      </contents>
+    </head>
+  </teamproject.auctionassignment.ADT.LinkedList>
+
+  <teamproject.auctionassignment.ADT.LinkedList>
+    <head>
+      <contents class="teamproject.auctionassignment.Models.Lot">
+        <lotName>A</lotName>
+        <description>a</description>
+        <type>a</type>
+        <yearsOld>1</yearsOld>
+        <askingPrice>100.0</askingPrice>
+      </contents>
+    </head>
+  </teamproject.auctionassignment.ADT.LinkedList>
+</object-stream>

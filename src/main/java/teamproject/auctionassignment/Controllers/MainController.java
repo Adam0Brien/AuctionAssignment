@@ -309,18 +309,22 @@ public class MainController {
 		try {
 			for (int i = 0; i < Main.biddersList.size(); i++) {
 				if (lotListView2.getSelectionModel().getSelectedIndex() == i) {
-					Bid b = new Bid(Integer.parseInt(bidAmount.getText()),  date = LocalDate.now().toString(), time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
-					//for (int i = 0; i < Main.biddersList.size(); i++) {
-					// if (lotListView2.getSelectionModel().getSelectedIndex() == i) {
-					Bidder bidderSelected = (Bidder) bidderChoiceBox.getSelectionModel().getSelectedItem();
-					bidderSelected.addBid(b);
-
-					showBid(bidderSelected);
+					Bid b = new Bid(Integer.parseInt(bidAmount.getText()), date = LocalDate.now().toString(), time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
+					for (int j = 0; j < Main.biddersList.size(); j++) {
+						if (lotListView2.getSelectionModel().getSelectedIndex() == j) {
+							Bidder bidderSelected = (Bidder) bidderChoiceBox.getSelectionModel().getSelectedItem();
+							bidderSelected.addBid(b);
 
 
+							bidListView.getItems().clear();
+							bidListView.getItems().add(b);
 
-					//  }
-					// }
+
+							//showBid(bidderSelected);
+
+
+						}
+					}
 				}
 			}
 		} catch (Exception e){
@@ -440,9 +444,7 @@ public class MainController {
 	public void save(ActionEvent event) throws Exception {
 		try {
 			XStream xstream = new XStream(new DomDriver());
-
 			ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("BiddersAndLots.xml"));
-
 			out.writeObject(Main.biddersList);
             out.writeObject(Main.lotsList);
 			out.close();

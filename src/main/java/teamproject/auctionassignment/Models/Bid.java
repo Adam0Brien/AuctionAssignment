@@ -48,6 +48,8 @@ public class Bid{
 
 
 
+
+
     @Override
     public String toString() {
         return

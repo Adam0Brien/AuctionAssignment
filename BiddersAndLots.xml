@@ -2,16 +2,16 @@
   <teamproject.auctionassignment.ADT.LinkedList>
     <head>
       <contents class="teamproject.auctionassignment.Models.Bidder">
-        <bidderName>a</bidderName>
+        <bidderName>adam</bidderName>
         <address>a</address>
         <phone>a</phone>
-        <email>s</email>
+        <email>a</email>
         <bidList>
           <head>
             <contents class="teamproject.auctionassignment.Models.Bid">
-              <bidAmount>100</bidAmount>
-              <date>2021-12-06</date>
-              <time>09:50:14</time>
+              <bidAmount>1000</bidAmount>
+              <date>2021-12-09</date>
+              <time>20:43:04</time>
             </contents>
           </head>
         </bidList>
@@ -21,11 +21,11 @@
   <teamproject.auctionassignment.ADT.LinkedList>
     <head>
       <contents class="teamproject.auctionassignment.Models.Lot">
-        <lotName>1</lotName>
-        <description>1</description>
-        <type>1</type>
+        <lotName>a</lotName>
+        <description>a</description>
+        <type>a</type>
         <yearsOld>1</yearsOld>
-        <askingPrice>1.0</askingPrice>
+        <askingPrice>100.0</askingPrice>
       </contents>
     </head>
   </teamproject.auctionassignment.ADT.LinkedList>

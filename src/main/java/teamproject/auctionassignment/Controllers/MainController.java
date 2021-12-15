@@ -317,10 +317,9 @@ public class MainController {
 
 
 							bidListView.getItems().clear();
-							bidListView.getItems().add(b);
+							//bidListView.getItems().add(b);
 
-
-							//showBid(bidderSelected);
+							showBid(bidderSelected);
 
 
 						}
@@ -430,24 +429,63 @@ public class MainController {
 			//biddersListView.getItems().  ASK PETER HOW TO UPDATE THE LISTVIEW AFTER LOADING......
 			XStream xstream = new XStream(new DomDriver());
 			xstream.addPermission(AnyTypePermission.ANY);
-			ObjectInputStream is = xstream.createObjectInputStream(new FileReader("BiddersAndLots.xml"));
+
+
+			ObjectInputStream is = xstream.createObjectInputStream(new FileReader("Bidders.xml"));
+
 			Main.biddersList = (LinkedList<Bidder>) is.readObject();
+
+			is = xstream.createObjectInputStream(new FileReader("Lots.xml"));
+
             Main.lotsList = (LinkedList<Lot>) is.readObject();
+
+
 			is.close();
 
+			loadBiddersListView();//loads the listviews
+			loadLotsListView();
 
 		} catch (Exception e) {
 			System.out.println("Error in reading this file : " + e);
 		}
 	}
+	public void loadBiddersListView(){
+		biddersListView.getItems().clear();
+		LinkedNode currentNode= Main.biddersList.head;
+
+
+
+		while(currentNode!= null){
+			biddersListView.getItems().add((Bidder)currentNode.getContents());
+			currentNode = currentNode.next;
+		}
+
+	}
+	public void loadLotsListView(){
+		lotListView.getItems().clear();
+		lotListView2.getItems().clear();
+		LinkedNode currentNode= Main.lotsList.head;
+
+		while(currentNode!= null){
+			lotListView.getItems().add(String.valueOf((Lot)currentNode.getContents()));
+			lotListView2.getItems().add((Lot)currentNode.getContents());
+			currentNode = currentNode.next;
+		}
+	}
+
 
 	public void save(ActionEvent event) throws Exception {
 		try {
 			XStream xstream = new XStream(new DomDriver());
-			ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("BiddersAndLots.xml"));
+			ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("Bidders.xml"));
 			out.writeObject(Main.biddersList);
-            out.writeObject(Main.lotsList);
 			out.close();
+
+
+			ObjectOutputStream out2 = xstream.createObjectOutputStream(new FileWriter("Lots.xml"));
+            out2.writeObject(Main.lotsList);
+
+			out2.close();
 		} catch (Exception e) {
 			System.out.println("Error writing this file : " + e);
 		}

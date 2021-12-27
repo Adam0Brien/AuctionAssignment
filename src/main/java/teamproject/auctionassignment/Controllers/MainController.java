@@ -85,6 +85,25 @@ public class MainController {
 	private Label lotListNo;
 
 
+
+
+
+	public void loadMain(ActionEvent event) {
+			Driver.stage.setScene(Driver.mainScene);
+		}
+
+	public void exitProgram(ActionEvent event){
+		System.exit(1);
+	}
+
+	public void loadMainFromPreviousSave(ActionEvent event) throws Exception {
+		load(event);
+		loadMain(event);
+
+	}
+
+
+
 	public void addLot(Lot lot) {
 		Main.lotsList.addElement(lot);
 	}
@@ -426,7 +445,6 @@ public class MainController {
 	public void load(ActionEvent event) throws Exception {
 		try {
 			System.out.println(Main.biddersList.printList());
-			//biddersListView.getItems().  ASK PETER HOW TO UPDATE THE LISTVIEW AFTER LOADING......
 			XStream xstream = new XStream(new DomDriver());
 			xstream.addPermission(AnyTypePermission.ANY);
 

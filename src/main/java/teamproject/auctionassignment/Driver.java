@@ -14,6 +14,7 @@ public class Driver extends Application {
 
     public static Scene mainScene;
     public static Scene bidderInfo;
+    public static Scene start;
     private MainController MainController;
 
     @Override
@@ -21,29 +22,35 @@ public class Driver extends Application {
         try{
 
 
+
             MainController = new MainController();
             stage = mainStage;
 
-            FXMLLoader fxmlLoader = new FXMLLoader(Driver.class.getResource("main.fxml"));
-            fxmlLoader.setController(MainController);
 
-            mainScene = new Scene(fxmlLoader.load(), 950, 600);
+            FXMLLoader startingScene = new FXMLLoader(Driver.class.getResource("start.fxml"));
+            startingScene.setController(MainController);
+            start = new Scene(startingScene.load(),600,375);
 
 
-            FXMLLoader fxmlLoader1 = new FXMLLoader(Driver.class.getResource("bidderInfo.fxml"));
-            fxmlLoader1.setController(MainController);
 
-            bidderInfo = new Scene(fxmlLoader1.load(),950,600);
+            FXMLLoader mainMenu = new FXMLLoader(Driver.class.getResource("main.fxml"));
+            mainMenu.setController(MainController);
+            mainScene = new Scene(mainMenu.load(), 950, 600);
+
+
+            FXMLLoader bidderMenu = new FXMLLoader(Driver.class.getResource("bidderInfo.fxml"));
+            bidderMenu.setController(MainController);
+            bidderInfo = new Scene(bidderMenu.load(),950,600);
 
             //fxmlLoader1.getController();
             stage.setTitle("Auction House");
-            stage.setScene(mainScene);
+            stage.setScene(start);
             stage.show();
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        System.out.println("Adam");
+        System.out.println("Working!");
     }
 
 

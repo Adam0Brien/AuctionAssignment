@@ -9,7 +9,7 @@ module teamproject.auctionassignment {
     opens teamproject.auctionassignment.Controllers to javafx.fxml , xstream;
     opens teamproject.auctionassignment.ADT to xstream;
     opens teamproject.auctionassignment.Models to xstream;
-    opens teamproject.auctionassignment.Hashmap to xstream;
+    opens teamproject.auctionassignment.HashTable to xstream;
 
     exports teamproject.auctionassignment.Controllers;
     exports teamproject.auctionassignment;

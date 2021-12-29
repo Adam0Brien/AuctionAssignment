@@ -85,6 +85,25 @@ public class MainController {
 	private Label lotListNo;
 
 
+
+
+
+	public void loadMain(ActionEvent event) {
+			Driver.stage.setScene(Driver.mainScene);
+		}
+
+	public void exitProgram(ActionEvent event){
+		System.exit(1);
+	}
+
+	public void loadMainFromPreviousSave(ActionEvent event) throws Exception {
+		load(event);
+		loadMain(event);
+
+	}
+
+
+
 	public void addLot(Lot lot) {
 		Main.lotsList.addElement(lot);
 	}
@@ -426,7 +445,6 @@ public class MainController {
 	public void load(ActionEvent event) throws Exception {
 		try {
 			System.out.println(Main.biddersList.printList());
-			//biddersListView.getItems().  ASK PETER HOW TO UPDATE THE LISTVIEW AFTER LOADING......
 			XStream xstream = new XStream(new DomDriver());
 			xstream.addPermission(AnyTypePermission.ANY);
 
@@ -440,25 +458,33 @@ public class MainController {
             Main.lotsList = (LinkedList<Lot>) is.readObject();
 
 
+
 			is.close();
 
 			loadBiddersListView();//loads the listviews
 			loadLotsListView();
+
+
 
 		} catch (Exception e) {
 			System.out.println("Error in reading this file : " + e);
 		}
 	}
 	public void loadBiddersListView(){
-		biddersListView.getItems().clear();
+		biddersListView.getItems().clear();//
+		bidderChoiceBox.getItems().clear();//
 		LinkedNode currentNode= Main.biddersList.head;
 
 
 
 		while(currentNode!= null){
-			biddersListView.getItems().add((Bidder)currentNode.getContents());
+			biddersListView.getItems().add((Bidder)currentNode.getContents());//populates listview
+			bidderChoiceBox.getItems().add((Bidder)currentNode.getContents());//populates choicebox
 			currentNode = currentNode.next;
 		}
+
+
+
 
 	}
 	public void loadLotsListView(){
@@ -467,7 +493,7 @@ public class MainController {
 		LinkedNode currentNode= Main.lotsList.head;
 
 		while(currentNode!= null){
-			lotListView.getItems().add(String.valueOf((Lot)currentNode.getContents()));
+			lotListView.getItems().add(String.valueOf((Lot)currentNode.getContents()));//populates both listviews
 			lotListView2.getItems().add((Lot)currentNode.getContents());
 			currentNode = currentNode.next;
 		}

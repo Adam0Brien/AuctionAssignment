@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import teamproject.auctionassignment.ADT.LinkedList;
 import teamproject.auctionassignment.Driver;
 import teamproject.auctionassignment.Models.Bidder;
+import teamproject.auctionassignment.Models.CompletedBids;
 import teamproject.auctionassignment.Models.Lot;
 
 public class Main {
@@ -12,6 +13,8 @@ public class Main {
     public static LinkedList<Lot> lotsList = new LinkedList<>();
 
     public static LinkedList<Bidder> biddersList = new LinkedList<>();
+
+    public static LinkedList<CompletedBids> completedBids = new LinkedList<>();
 
 
 

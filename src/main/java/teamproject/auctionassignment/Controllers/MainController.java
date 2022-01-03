@@ -3,6 +3,7 @@ package teamproject.auctionassignment.Controllers;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
@@ -11,8 +12,6 @@ import java.io.ObjectOutputStream;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import teamproject.auctionassignment.ADT.LinkedList;
@@ -21,6 +20,7 @@ import teamproject.auctionassignment.Driver;
 import teamproject.auctionassignment.Main;
 import teamproject.auctionassignment.Models.Bid;
 import teamproject.auctionassignment.Models.Bidder;
+import teamproject.auctionassignment.Models.CompletedBids;
 import teamproject.auctionassignment.Models.Lot;
 
 
@@ -28,7 +28,6 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 
 
 
@@ -49,25 +48,22 @@ Bid
 
 public class MainController {
 
-	public MainController() {
-
-		// this.lots = new LinkedList<Lot>();
-//
-//        this.bids = new LinkedList<Bid>();
 
 
-	}
 
+	@FXML
+	ListView searchListView;
 
 	public void initialize() {
 
+			}
+		}
+		return null;
 	}
 
 	/**
 	 * This is where Lot methods will be held
 	 */
-
-//    public LinkedList<Lot> lots;
 
 	@FXML
 	private TextField lotName;
@@ -85,14 +81,11 @@ public class MainController {
 	private Label lotListNo;
 
 
-
-
-
 	public void loadMain(ActionEvent event) {
-			Driver.stage.setScene(Driver.mainScene);
-		}
+		Driver.stage.setScene(Driver.mainScene);
+	}
 
-	public void exitProgram(ActionEvent event){
+	public void exitProgram(ActionEvent event) {
 		System.exit(1);
 	}
 
@@ -101,7 +94,6 @@ public class MainController {
 		loadMain(event);
 
 	}
-
 
 
 	public void addLot(Lot lot) {
@@ -183,11 +175,11 @@ public class MainController {
 
 	}
 
-	public void showBidder(){
+	public void showBidder() {
 		biddersListView.getItems().clear();
 		bidderChoiceBox.getItems().clear();
 		LinkedNode currentNode = Main.biddersList.head;
-		for(int i = 0 ; i < Main.biddersList.size(); i++){
+		for (int i = 0; i < Main.biddersList.size(); i++) {
 			Bidder current = (Bidder) currentNode.getContents();
 			biddersListView.getItems().add(current);
 			bidderChoiceBox.getItems().add(current);
@@ -317,11 +309,9 @@ public class MainController {
 	@FXML
 	private ListView<Lot> lotListView2;  // this is used in addLotDetails the reason its here is because its in the bid class
 	@FXML
-	private ListView<Bid> bidListView;
+	private ListView bidListView;
 	private String date;
 	private String time;
-
-
 
 
 	public void addBids() {
@@ -334,59 +324,48 @@ public class MainController {
 							Bidder bidderSelected = (Bidder) bidderChoiceBox.getSelectionModel().getSelectedItem();
 							bidderSelected.addBid(b);
 
+							System.out.println(lotListView2.getSelectionModel().getSelectedItem().toString());
+							System.out.println(bidderSelected.getBidderName());
 
 							bidListView.getItems().clear();
 							//bidListView.getItems().add(b);
 
-							showBid(bidderSelected);
 
+							showLot(lotSelected);
+							showBid(bidderSelected);
 
 						}
 					}
 				}
 			}
-		} catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Error : " + e);
 		}
 	}
 
-	public void showBid(Bidder bidr){
+	public void showBid(Bidder bidr) {
 		bidListView.getItems().clear();
 		LinkedNode currentNode = bidr.bidList.head;
-		for(int i = 0; i < bidr.bidList.size(); i++){
-			Bid current = (Bid) currentNode.getContents();
-			bidListView.getItems().add(current);
+
+		for (int i = 0; i < bidr.bidList.size(); i++) {
+			Bid currentBid = (Bid) currentNode.getContents();
+
+			bidListView.getItems().add(currentBid);
 			currentNode = currentNode.next;
 		}
 	}
 
-	//we need to add to this method
-	//we need to make it so when you select the lotListView2 it updates the askingPrice.
-	//we also need to make it so you HAVE to select and item from the listview
-	// if this isn't possible we can just use a choiceBox (might be a lot easier but wont look as nice)
-//    public void addBiddersBid(ActionEvent event) {
-//        Bid bid = new Bid(Integer.parseInt(bidAmount.getText()), date.toString(), time.toString());
-//
-//        for (int i = 0; i < Main.biddersList.size(); i++) {
-//            if (lotListView2.getSelectionModel().getSelectedIndex() == i) {
-//                bidderChoiceBox.getSelectionModel().getSelectedIndex();
-//
-//                bidListView.getItems().add(bidderChoiceBox.getSelectionModel().getSelectedItem() +
-//                        " is bidding on " + lotListView2.getSelectionModel().getSelectedItem().getLotName() + "\n" + (bid.toString()));
-//            }
-//        }
-//
-//
-//        if (bids.size() != 0) {
-//            lotListView2.getSelectionModel().getSelectedItem();
-//            bid.setBidAmount(Integer.parseInt(bidAmount.getText()));  //sets the bidAmount to the one written in the TextField
-//        }
-//    }
+	public void showLot(Lot lot) {
+		bidListView.getItems().clear();
+		LinkedNode currentNode = Main.lotsList.head;
 
+		for (int i = 0; i < Main.lotsList.size(); i++) {
+			Lot currentLot = (Lot) currentNode.getContents();
+			bidListView.getItems().add(currentLot);
+			currentNode = currentNode.next;
+		}
+	}
 
-//    public void removeAllBids() {
-//        bidList.deleteList();
-//    }
 
 	private static Bid bid;
 
@@ -400,41 +379,45 @@ public class MainController {
 	}
 
 
-
-	//does not delete
-//        try {
-//            for (int i = 0; i < bidder.bidList.size(); i++) {
-//
-//                if (bidListView.getSelectionModel().getSelectedIndex() == i) {
-//                    bidder.bidList.delete(bidListView.getSelectionModel().getSelectedIndex());
-//                    bidListView.getItems().remove(biddersListView.getSelectionModel().getSelectedItem());
-//
-//                    System.out.println(bidder.bidList.printList());
-
-//        try{
-//            if (bidder.bidList.size() != 0) { // stops nullPointerException
-//                for (int i = 0; i < bidder.bidList.size(); i++) {
-//                    if (bidListView.getSelectionModel().getSelectedIndex() == i) {
-//
-//                        Main.biddersList.delete(i);
-//                        bidListView.getItems().remove(i);
-//                    }
-//                }
-//                //}
-//            }
-//
-//        }catch (Exception e){
-//            System.out.println("Error : " + e);
-//        }
-
-	// }
-	// }
-
-
-
 	/**
 	 * Searching for unsold bids
 	 */
+	public void searchUnSoldBids() {
+		for (int i = 0; i < Main.lotsList.size(); i++) {
+			Lot selectedLot = Main.lotsList.get(i);
+
+
+		}
+
+
+	}
+
+	public static Lot getLotByName(String name) {
+		for (int i = 0; i < Main.lotsList.size(); i++) {
+			if (Main.lotsList.get(i).getLotName().equalsIgnoreCase(name))
+				return Main.lotsList.get(i);
+		}
+		return null;
+	}
+
+
+	public void completeBid() {
+		CompletedBids CB = new CompletedBids(lotListView2.getSelectionModel().getSelectedItem().getLotName(), (Integer.parseInt(bidAmount.getText())), date = LocalDate.now().toString(), time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
+		int bidSelected = bidListView.getSelectionModel().getSelectedIndex(); // getting the selected appointment from the sleected booth index
+		Lot lotSelected = (Lot) lotListView2.getSelectionModel().getSelectedItem();
+
+		bidListView.getItems().remove(bidSelected);// deleting the appointment from the selected booth
+		lotListView2.getItems().remove(lotSelected); // removing the appointment form the view list
+
+		getLotByName(lotName.getText()); // creating a vaccination record from the appointment that has just been removed
+
+		searchListView.getItems().add(CB); // adding that appointment to a vaccination record view list
+		System.out.println(CB + "\n" + "==================================================================");
+
+
+	}
+
+
 
 
 	/**
@@ -455,46 +438,58 @@ public class MainController {
 
 			is = xstream.createObjectInputStream(new FileReader("Lots.xml"));
 
-            Main.lotsList = (LinkedList<Lot>) is.readObject();
+			Main.lotsList = (LinkedList<Lot>) is.readObject();
 
 
+//			is = xstream.createObjectInputStream(new FileReader("CompletedBids.xml"));
+//
+//			Main.completedBids = (LinkedList<CompletedBids>) is.readObject();
 
 			is.close();
 
 			loadBiddersListView();//loads the listviews
 			loadLotsListView();
-
-
+			//loadCBListView();
 
 		} catch (Exception e) {
 			System.out.println("Error in reading this file : " + e);
 		}
 	}
-	public void loadBiddersListView(){
+
+	public void loadBiddersListView() {
 		biddersListView.getItems().clear();//
 		bidderChoiceBox.getItems().clear();//
-		LinkedNode currentNode= Main.biddersList.head;
+		LinkedNode currentNode = Main.biddersList.head;
 
 
-
-		while(currentNode!= null){
-			biddersListView.getItems().add((Bidder)currentNode.getContents());//populates listview
-			bidderChoiceBox.getItems().add((Bidder)currentNode.getContents());//populates choicebox
+		while (currentNode != null) {
+			biddersListView.getItems().add((Bidder) currentNode.getContents());//populates listview
+			bidderChoiceBox.getItems().add((Bidder) currentNode.getContents());//populates choicebox
 			currentNode = currentNode.next;
 		}
 
 
-
-
 	}
-	public void loadLotsListView(){
+
+	public void loadLotsListView() {
 		lotListView.getItems().clear();
 		lotListView2.getItems().clear();
-		LinkedNode currentNode= Main.lotsList.head;
+		LinkedNode currentNode = Main.lotsList.head;
 
-		while(currentNode!= null){
-			lotListView.getItems().add(String.valueOf((Lot)currentNode.getContents()));//populates both listviews
-			lotListView2.getItems().add((Lot)currentNode.getContents());
+		while (currentNode != null) {
+			lotListView.getItems().add(String.valueOf((Lot) currentNode.getContents()));//populates both listviews
+			lotListView2.getItems().add((Lot) currentNode.getContents());
+			currentNode = currentNode.next;
+		}
+	}
+
+	public void loadCBListView() {
+		searchListView.getItems().clear();
+
+		LinkedNode currentNode = Main.completedBids.head;
+
+		while (currentNode != null) {
+			searchListView.getItems().add(String.valueOf((Lot) currentNode.getContents()));//populates both listviews
 			currentNode = currentNode.next;
 		}
 	}
@@ -509,37 +504,49 @@ public class MainController {
 
 
 			ObjectOutputStream out2 = xstream.createObjectOutputStream(new FileWriter("Lots.xml"));
-            out2.writeObject(Main.lotsList);
+			out2.writeObject(Main.lotsList);
 
 			out2.close();
+
+
+			ObjectOutputStream out3 = xstream.createObjectOutputStream(new FileWriter("CompletedBids.xml"));
+			out3.writeObject(Main.completedBids);
+			out3.close();
+
 		} catch (Exception e) {
 			System.out.println("Error writing this file : " + e);
 		}
 	}
 
-	@FXML
-	private TextField bidderSearch;
-	@FXML
-	private ListView searchBidderList;
 
 
 
-//    public void searchBidder(ActionEvent event) {
-//
-//        for (int i = 0; i < Main.lotsList.size(); i++) { // running over Patients with a for loop
-//            Lot selectedLot = Main.lotsList .get(i); // Selecting a Patient for every Patient
-//            if (selectedLot.bidder != null) { // Checking if the selected Patient's record isn't null (Has a record)
-//                for (int j = 0; j < selectedLot.bidder.size(); j++) { // Running over all selected patients records
-//                    Bidder selected = selectedLot.bidder.get(j); // Getting the vaccination record for that patient
-//                    if (bidderSearch.getText().equals(selected.getBidderName())) {// Checking if the vaccination record match the batch of what was typed in the box
-//                        searchBidderList.getItems().add(selected.toString()); // If so return this
-//
-//                        System.out.println(selectedLot.toString());
-//
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
+	public void SearchSoldBids() {
+
+		for (int i = 0; i < Main.lotsList.size(); i++) { // running over Patients with a for loop
+			Lot selectedLot = Main.lotsList.get(i); // Selecting a Patient for every Patient
+			if (selectedLot.completedBids != null) { // Checking if the selected Patient's record isn't null (Has a record)
+				for (int j = 0; j < selectedLot.completedBids.size(); j++) { // Running over all selected patients records
+					CompletedBids selected = selectedLot.completedBids.get(j); // Getting the vaccination record for that patient
+					if (soldSearchBar.getText().equals(selected.getLotName())) {   //|| recordPPSN.getText().equals(selected.getPPSN()) // Checking if the vaccination record match the batch of what was typed in the box
+						soldBidsSearch.getItems().add(selected.toString()); // If so return this
+
+						System.out.println(selectedLot.toString());
+
+
+					}
+				}
+
+
+			}
+
+
+		}
+
+
+	}
+
+
+
 }
+

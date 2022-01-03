@@ -63,9 +63,9 @@ public class Lot {
         return askingPrice;
     }
 
-    public Object setAskingPrice(float askingPrice) {
+    public void setAskingPrice(float askingPrice) {
         this.askingPrice = askingPrice;
-        return null;
+
     }
 
 

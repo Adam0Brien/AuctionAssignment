@@ -1,0 +1,7 @@
+#stackpane{
+    -fx-background-size: contain, contain, contain, contain, contain, contain;
+    -fx-background-position: bottom, bottom, bottom, bottom, bottom, bottom;
+
+    -fx-background-image: url(images/storageunit.jpg); //*https://www.artstation.com/artwork/WK594N REFERENCE FOR ART IF NEEDED */
+    -fx-background-size: cover;
+}

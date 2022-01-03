@@ -60,7 +60,7 @@
                               <TextField fx:id="type" layoutX="100.0" layoutY="147.0" promptText="Type" />
                               <TextField fx:id="yearsOld" layoutX="100.0" layoutY="179.0" promptText="Year/date of origin" />
                               <Button fx:id="addLot" layoutX="100.0" layoutY="245.0" mnemonicParsing="false" onAction="#addLotDetails" text="Add" />
-                               <ListView fx:id="lotListView" layoutX="329.0" layoutY="83.0" prefHeight="446.0" prefWidth="532.0" />
+                               <ListView fx:id="lotListView" layoutX="329.0" layoutY="83.0" prefHeight="446.0" prefWidth="532.0" onMouseClicked="#lotInfo" />
                                <Label fx:id="lotListNo" layoutX="478.0" layoutY="535.0" prefHeight="26.0" prefWidth="218.0" text="There are 0 Items up for bid" />
                               <TextField fx:id="askingPrice" layoutX="100.0" layoutY="211.0" promptText="Asking Price" />
                               <Button fx:id="deleteLot" layoutX="149.0" layoutY="245.0" mnemonicParsing="false" onAction="#deleteLot" text="Delete" />

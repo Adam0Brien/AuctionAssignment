@@ -2,11 +2,12 @@
   <teamproject.auctionassignment.ADT.LinkedList>
     <head>
       <contents class="teamproject.auctionassignment.Models.Lot">
-        <lotName>a</lotName>
-        <description>a</description>
-        <type>a</type>
-        <yearsOld>1</yearsOld>
-        <askingPrice>1.0</askingPrice>
+        <lotName>Ice Cream</lotName>
+        <description>Tasty</description>
+        <type>Chocolate</type>
+        <yearsOld>2022</yearsOld>
+        <askingPrice>3.0</askingPrice>
+        <completedBids/>
       </contents>
     </head>
   </teamproject.auctionassignment.ADT.LinkedList>

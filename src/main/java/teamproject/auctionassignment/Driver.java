@@ -15,6 +15,7 @@ public class Driver extends Application {
     public static Scene mainScene;
     public static Scene bidderInfo;
     public static Scene start;
+    public static Scene lotInfo;
     private MainController MainController;
 
     @Override
@@ -40,7 +41,11 @@ public class Driver extends Application {
 
             FXMLLoader bidderMenu = new FXMLLoader(Driver.class.getResource("bidderInfo.fxml"));
             bidderMenu.setController(MainController);
-            bidderInfo = new Scene(bidderMenu.load(),950,600);
+            bidderInfo = new Scene(bidderMenu.load(),470,320);
+
+            FXMLLoader lotMenu = new FXMLLoader(Driver.class.getResource("lotInfo.fxml"));
+            lotMenu.setController(MainController);
+            lotInfo = new Scene(lotMenu.load(),640,320);
 
             //fxmlLoader1.getController();
             stage.setTitle("Auction House");

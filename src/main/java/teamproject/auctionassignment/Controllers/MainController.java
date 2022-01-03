@@ -52,7 +52,7 @@ public class MainController {
 
 
 	@FXML
-	ListView searchListView;
+	ListView completedBidsListView;
 
 	public void initialize() {
 
@@ -317,10 +317,12 @@ public class MainController {
 	public void addBids() {
 		try {
 			for (int i = 0; i < Main.biddersList.size(); i++) {
+
 				if (lotListView2.getSelectionModel().getSelectedIndex() == i) {
+
 					Bid b = new Bid(Integer.parseInt(bidAmount.getText()), date = LocalDate.now().toString(), time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
-					for (int j = 0; j < Main.biddersList.size(); j++) {
-						if (lotListView2.getSelectionModel().getSelectedIndex() == j) {
+
+
 							Bidder bidderSelected = (Bidder) bidderChoiceBox.getSelectionModel().getSelectedItem();
 							bidderSelected.addBid(b);
 
@@ -336,8 +338,8 @@ public class MainController {
 
 						}
 					}
-				}
-			}
+
+			
 		} catch (Exception e) {
 			System.out.println("Error : " + e);
 		}
@@ -411,7 +413,7 @@ public class MainController {
 
 		getLotByName(lotName.getText()); // creating a vaccination record from the appointment that has just been removed
 
-		searchListView.getItems().add(CB); // adding that appointment to a vaccination record view list
+		completedBidsListView.getItems().add(CB); // adding that appointment to a vaccination record view list
 		System.out.println(CB + "\n" + "==================================================================");
 
 
@@ -449,6 +451,8 @@ public class MainController {
 
 			loadBiddersListView();//loads the listviews
 			loadLotsListView();
+			lotListNo.setText("There are " + numberOfLots() + " Lots");
+			bidderListNo.setText("There are " + numberOfBidders() + " Bidders");
 			//loadCBListView();
 
 		} catch (Exception e) {
@@ -484,12 +488,12 @@ public class MainController {
 	}
 
 	public void loadCBListView() {
-		searchListView.getItems().clear();
+		completedBidsListView.getItems().clear();
 
 		LinkedNode currentNode = Main.completedBids.head;
 
 		while (currentNode != null) {
-			searchListView.getItems().add(String.valueOf((Lot) currentNode.getContents()));//populates both listviews
+			completedBidsListView.getItems().add(String.valueOf((Lot) currentNode.getContents()));//populates both listviews
 			currentNode = currentNode.next;
 		}
 	}

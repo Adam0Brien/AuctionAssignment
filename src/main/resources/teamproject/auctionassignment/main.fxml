@@ -45,7 +45,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@Ca2.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox prefHeight="400.0" prefWidth="640.0" stylesheets="@Ca2.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -125,7 +125,7 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ListView fx:id="searchListView" layoutX="274.0" layoutY="47.0" prefHeight="560.0" prefWidth="597.0" />
+                              <ListView fx:id="completedBidsListView" layoutX="274.0" layoutY="47.0" prefHeight="560.0" prefWidth="597.0" />
                               <Button layoutX="224.0" layoutY="169.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="27.0" text="&gt;" />
                               <TextField fx:id="search" layoutX="75.0" layoutY="169.0" promptText="Search" />
                               <Label fx:id="ClosedBidsLabel" layoutX="500.0" layoutY="7.0" text="Closed Bids">

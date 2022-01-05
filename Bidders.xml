@@ -8,10 +8,17 @@
         <email>adam@gmail.com</email>
         <bidList>
           <head>
+            <next>
+              <contents class="teamproject.auctionassignment.Models.Bid">
+                <bidAmount>4</bidAmount>
+                <date>2022-01-03</date>
+                <time>21:00:51</time>
+              </contents>
+            </next>
             <contents class="teamproject.auctionassignment.Models.Bid">
-              <bidAmount>4</bidAmount>
-              <date>2022-01-03</date>
-              <time>21:00:51</time>
+              <bidAmount>1000</bidAmount>
+              <date>2022-01-04</date>
+              <time>18:59:45</time>
             </contents>
           </head>
         </bidList>

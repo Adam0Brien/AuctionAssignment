@@ -1,8 +1,9 @@
 package teamproject.auctionassignment.Controllers;
 
+//save/load
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,10 +11,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import com.thoughtworks.xstream.security.AnyTypePermission;
+
+//javaFX
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+
+//importing  other classes
 import teamproject.auctionassignment.ADT.LinkedList;
 import teamproject.auctionassignment.ADT.LinkedNode;
 import teamproject.auctionassignment.Driver;
@@ -23,14 +28,15 @@ import teamproject.auctionassignment.Models.Bidder;
 import teamproject.auctionassignment.Models.CompletedBids;
 import teamproject.auctionassignment.Models.Lot;
 
-
+//used for processing bid times
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-
-
+/**
+ * Authors: Adam O'Brien, Eric butler, Kyle Kennedy
+ */
 /*
 ====================================================================================
 This is where we will keep ALL of our backend methods
@@ -41,20 +47,12 @@ Bidder
 Bid
 ........
 
-
-
  */
-
 
 public class MainController {
 
-
     private static Bidder bidder;
-    private static Bid bid;
     private static Lot lot;
-    /**
-     * Bidder Info helper methods
-     */
 
     @FXML
     public TextField setBidderName;
@@ -64,12 +62,13 @@ public class MainController {
     public TextField setBidderPhoneNumber;
     @FXML
     public TextField setBidderEmail;
+    public TextField setLotName;
+    public TextField setLotDescription;
+    public TextField setLotType;
+    public TextField setLotYear;
+    public TextField setLotPrice;
     @FXML
     ListView completedBidsListView;
-    /**
-     * This is where Lot methods will be held
-     */
-
     @FXML
     private TextField lotName;
     @FXML
@@ -84,11 +83,6 @@ public class MainController {
     private ListView<Lot> lotListView;
     @FXML
     private Label lotListNo;
-    /**
-     * Bidder methods
-     */
-
-
     @FXML
     private TextField bidderName;
     @FXML
@@ -103,9 +97,6 @@ public class MainController {
     private ChoiceBox bidderChoiceBox;
     @FXML
     private Label bidderListNo;
-    /**
-     * Bid Methods
-     */
     @FXML
     private TextField bidAmount;
     @FXML
@@ -119,14 +110,6 @@ public class MainController {
     @FXML
     private TextField soldSearchBar;
 
-    public static Lot getLotByName(String name) {
-        for (int i = 0; i < Main.lotsList.size(); i++) {
-            if (Main.lotsList.get(i).getLotName().equalsIgnoreCase(name))
-                return Main.lotsList.get(i);
-        }
-        return null;
-    }
-
     public LinkedList<Lot> initialize() {
 
         for (int i = 0; i < Main.lotsList.size(); i++) {
@@ -139,10 +122,6 @@ public class MainController {
         return null;
     }
 
-    public void loadMain(ActionEvent event) {
-        Driver.stage.setScene(Driver.mainScene);
-    }
-
     public void exitProgram(ActionEvent event) {
         System.exit(1);
     }
@@ -150,28 +129,93 @@ public class MainController {
     public void loadMainFromPreviousSave(ActionEvent event) throws Exception {
         load(event);
         loadMain(event);
+    }
+
+    /**
+     * Save and loading
+     */
+
+    @SuppressWarnings("unchecked")
+    public void load(ActionEvent event) throws Exception {
+        try {
+            System.out.println(Main.biddersList.printList());
+            XStream xstream = new XStream(new DomDriver());
+            xstream.addPermission(AnyTypePermission.ANY);
+
+            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("Bidders.xml"));
+
+            Main.biddersList = (LinkedList<Bidder>) is.readObject();
+
+            is = xstream.createObjectInputStream(new FileReader("Lots.xml"));
+
+            Main.lotsList = (LinkedList<Lot>) is.readObject();
+
+//			is = xstream.createObjectInputStream(new FileReader("CompletedBids.xml"));
+//
+//			Main.completedBids = (LinkedList<CompletedBids>) is.readObject();
+
+            is.close();
+
+            loadBiddersListView();//loads the listviews
+            loadLotsListView();
+            loadCBListView();
+            lotListNo.setText("There are " + numberOfLots() + " Lots");
+            bidderListNo.setText("There are " + numberOfBidders() + " Bidders");
+            //loadCBListView();
+
+        } catch (Exception e) {
+            System.out.println("Error in reading this file : " + e);
+        }
+    }
+
+    public void loadBiddersListView() {
+        biddersListView.getItems().clear();//
+        bidderChoiceBox.getItems().clear();//
+        LinkedNode currentNode = Main.biddersList.head;
+
+        while (currentNode != null) {
+            biddersListView.getItems().add((Bidder) currentNode.getContents());//populates listview
+            bidderChoiceBox.getItems().add(currentNode.getContents());//populates choicebox
+            currentNode = currentNode.next;
+        }
 
     }
 
-    public void addLot(Lot lot) {
-        Main.lotsList.addElement(lot);
+    public void loadLotsListView() {
+        lotListView.getItems().clear();
+        lotListView2.getItems().clear();
+        LinkedNode currentNode = Main.lotsList.head;
+
+        while (currentNode != null) {
+            lotListView.getItems().add((Lot) currentNode.getContents());//populates both listviews
+            lotListView2.getItems().add((Lot) currentNode.getContents());
+            currentNode = currentNode.next;
+        }
     }
 
-    public TextField setLotName;
-    public TextField setLotDescription;
-    public TextField setLotType;
-    public TextField setLotYear;
-    public TextField setLotPrice;
+    public void loadCBListView() {
+        completedBidsListView.getItems().clear();
+
+        LinkedNode currentNode = Main.completedBids.head;
+
+        while (currentNode != null) {
+            completedBidsListView.getItems().add(String.valueOf(currentNode.getContents()));//populates both listviews
+            currentNode = currentNode.next;
+        }
+    }
+
+    public void loadMain(ActionEvent event) {
+        Driver.stage.setScene(Driver.mainScene);
+    }
 
     public void editLot(ActionEvent event) {
         try {
 
-        lotName.setText(setLotName.getText());
-        description.setText(setLotDescription.getText());
-        type.setText(setLotType.getText());
-        yearsOld.setText(setLotYear.getText());
-        askingPrice.setText(setLotPrice.getText());
-
+            lotName.setText(setLotName.getText());
+            description.setText(setLotDescription.getText());
+            type.setText(setLotType.getText());
+            yearsOld.setText(setLotYear.getText());
+            askingPrice.setText(setLotPrice.getText());
 
             if (Main.lotsList.size() != 0) { // stops nullPointerException
                 for (int i = 0; i < Main.lotsList.size(); i++) {
@@ -192,12 +236,11 @@ public class MainController {
                         lotListView.getItems().remove(lot);  // make it, so it takes the selected lot and edits it
                         lotListView.getItems().add(lot);
 
-
                     }
                 }
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error on Edit Lot: " + e);
         }
     }
@@ -208,13 +251,11 @@ public class MainController {
 
                 lot = lotListView.getItems().get(lotListView.getSelectionModel().getSelectedIndex());
 
-
                 setLotName.setText(lot.getLotName());
                 setLotDescription.setText(lot.getDescription());
                 setLotType.setText(lot.getType());
                 setLotYear.setText(lot.getLotName());
                 setLotPrice.setText(String.valueOf(lot.getAskingPrice()));
-
 
                 Driver.stage.setScene(Driver.lotInfo);
 
@@ -235,11 +276,8 @@ public class MainController {
         lotListNo.setText("There are " + numberOfLots() + " Lots");
     }
 
-
-
-    public int numberOfLots() {
-        int x = Main.lotsList.size();
-        return x;
+    public void addLot(Lot lot) {
+        Main.lotsList.addElement(lot);
     }
 
     public void deleteLot(ActionEvent event) {//TODO
@@ -257,13 +295,13 @@ public class MainController {
         }
     }
 
-    public void removeAllLots() {  // for reset facility
-        Main.lotsList.deleteList();
+    public int numberOfLots() {
+        int x = Main.lotsList.size();
+        return x;
     }
 
-    public void addBidder(Bidder bidder) {
-        Main.biddersList.addElement(bidder);
-        showBidder();
+    public void removeAllLots() {  // for reset facility
+        Main.lotsList.deleteList();
     }
 
     public void addBidderDetails(ActionEvent event) {
@@ -278,6 +316,11 @@ public class MainController {
 
     }
 
+    public void addBidder(Bidder bidder) {
+        Main.biddersList.addElement(bidder);
+        showBidder();
+    }
+
     public void showBidder() {
         biddersListView.getItems().clear();
         bidderChoiceBox.getItems().clear();
@@ -290,18 +333,12 @@ public class MainController {
 
         }
 
-
     }
 
     public void removeAllBidders() {
 
         biddersListView.getItems().clear();
         Main.biddersList.deleteList();
-    }
-
-    public int numberOfBidders() {
-        int x = Main.biddersList.size();
-        return x;
     }
 
     public void removeBidder(ActionEvent event) {
@@ -319,6 +356,11 @@ public class MainController {
         }
     }
 
+    public int numberOfBidders() {
+        int x = Main.biddersList.size();
+        return x;
+    }
+
     public void bidderInfo(MouseEvent event) throws IOException {
 
         if (event.getClickCount() == 2) {
@@ -328,15 +370,12 @@ public class MainController {
 
             bidder = biddersListView.getItems().get(biddersListView.getSelectionModel().getSelectedIndex());
 
-
             setBidderName.setText(String.valueOf(bidder.getBidderName())); //displays bidder info when page is brought up
             setBidderAddress.setText(bidder.getAddress());
             setBidderEmail.setText(bidder.getEmail());
             setBidderPhoneNumber.setText(bidder.getPhone());
 
-
             Driver.stage.setScene(Driver.bidderInfo);
-
 
         }
         //  }
@@ -351,12 +390,10 @@ public class MainController {
 
     public void editBidder(ActionEvent event) {
 
-
         bidderName.setText(setBidderName.getText());
         bidderAddress.setText(setBidderAddress.getText());
         bidderPhone.setText(setBidderPhoneNumber.getText());
         bidderEmail.setText(setBidderEmail.getText());
-
 
         if (Main.biddersList.size() != 0) { // stops nullPointerException
             for (int i = 0; i < Main.biddersList.size(); i++) {
@@ -394,9 +431,9 @@ public class MainController {
 
                     Bid b = new Bid(Integer.parseInt(bidAmount.getText()), date = LocalDate.now().toString(), time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
 
-
-							Bidder bidderSelected = (Bidder) bidderChoiceBox.getSelectionModel().getSelectedItem();
-							bidderSelected.addBid(b);
+                    Bidder bidderSelected = (Bidder) bidderChoiceBox.getSelectionModel().getSelectedItem();
+                    bidderSelected.addBid(b);
+                    Lot lotSelected = lotListView2.getSelectionModel().getSelectedItem();
 
                     System.out.println(lotListView2.getSelectionModel().getSelectedItem().toString());
                     System.out.println(bidderSelected.getBidderName());
@@ -404,16 +441,25 @@ public class MainController {
                     bidListView.getItems().clear();
                     //bidListView.getItems().add(b);
 
-
                     showLot(lotSelected);
                     showBid(bidderSelected);
 
                 }
             }
 
-
         } catch (Exception e) {
             System.out.println("Error : " + e);
+        }
+    }
+
+    public void showLot(Lot lot) {
+        bidListView.getItems().clear();
+        LinkedNode currentNode = Main.lotsList.head;
+
+        for (int i = 0; i < Main.lotsList.size(); i++) {
+            Lot currentLot = (Lot) currentNode.getContents();
+            bidListView.getItems().add(currentLot);
+            currentNode = currentNode.next;
         }
     }
 
@@ -425,17 +471,6 @@ public class MainController {
             Bid currentBid = (Bid) currentNode.getContents();
 
             bidListView.getItems().add(currentBid);
-            currentNode = currentNode.next;
-        }
-    }
-
-    public void showLot(Lot lot) {
-        bidListView.getItems().clear();
-        LinkedNode currentNode = Main.lotsList.head;
-
-        for (int i = 0; i < Main.lotsList.size(); i++) {
-            Lot currentLot = (Lot) currentNode.getContents();
-            bidListView.getItems().add(currentLot);
             currentNode = currentNode.next;
         }
     }
@@ -456,9 +491,7 @@ public class MainController {
         for (int i = 0; i < Main.lotsList.size(); i++) {
             Lot selectedLot = Main.lotsList.get(i);
 
-
         }
-
 
     }
 
@@ -475,86 +508,15 @@ public class MainController {
         completedBidsListView.getItems().add(CB); // adding that appointment to a vaccination record view list
         System.out.println(CB + "\n" + "==================================================================");
 
-
     }
 
-
-    /**
-     * Save and loading
-     */
-
-    @SuppressWarnings("unchecked")
-    public void load(ActionEvent event) throws Exception {
-        try {
-            System.out.println(Main.biddersList.printList());
-            XStream xstream = new XStream(new DomDriver());
-            xstream.addPermission(AnyTypePermission.ANY);
-
-
-            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("Bidders.xml"));
-
-            Main.biddersList = (LinkedList<Bidder>) is.readObject();
-
-            is = xstream.createObjectInputStream(new FileReader("Lots.xml"));
-
-            Main.lotsList = (LinkedList<Lot>) is.readObject();
-
-
-//			is = xstream.createObjectInputStream(new FileReader("CompletedBids.xml"));
-//
-//			Main.completedBids = (LinkedList<CompletedBids>) is.readObject();
-
-            is.close();
-
-            loadBiddersListView();//loads the listviews
-            loadLotsListView();
-            lotListNo.setText("There are " + numberOfLots() + " Lots");
-            bidderListNo.setText("There are " + numberOfBidders() + " Bidders");
-            //loadCBListView();
-
-        } catch (Exception e) {
-            System.out.println("Error in reading this file : " + e);
+    public static Lot getLotByName(String name) {
+        for (int i = 0; i < Main.lotsList.size(); i++) {
+            if (Main.lotsList.get(i).getLotName().equalsIgnoreCase(name))
+                return Main.lotsList.get(i);
         }
+        return null;
     }
-
-    public void loadBiddersListView() {
-        biddersListView.getItems().clear();//
-        bidderChoiceBox.getItems().clear();//
-        LinkedNode currentNode = Main.biddersList.head;
-
-
-        while (currentNode != null) {
-            biddersListView.getItems().add((Bidder) currentNode.getContents());//populates listview
-            bidderChoiceBox.getItems().add(currentNode.getContents());//populates choicebox
-            currentNode = currentNode.next;
-        }
-
-
-    }
-
-    public void loadLotsListView() {
-        lotListView.getItems().clear();
-        lotListView2.getItems().clear();
-        LinkedNode currentNode = Main.lotsList.head;
-
-        while (currentNode != null) {
-            lotListView.getItems().add((Lot) currentNode.getContents());//populates both listviews
-            lotListView2.getItems().add((Lot) currentNode.getContents());
-            currentNode = currentNode.next;
-        }
-    }
-
-    public void loadCBListView() {
-        completedBidsListView.getItems().clear();
-
-        LinkedNode currentNode = Main.completedBids.head;
-
-        while (currentNode != null) {
-            completedBidsListView.getItems().add(String.valueOf(currentNode.getContents()));//populates both listviews
-            currentNode = currentNode.next;
-        }
-    }
-
 
     public void save(ActionEvent event) throws Exception {
         try {
@@ -563,12 +525,10 @@ public class MainController {
             out.writeObject(Main.biddersList);
             out.close();
 
-
             ObjectOutputStream out2 = xstream.createObjectOutputStream(new FileWriter("Lots.xml"));
             out2.writeObject(Main.lotsList);
 
             out2.close();
-
 
             ObjectOutputStream out3 = xstream.createObjectOutputStream(new FileWriter("CompletedBids.xml"));
             out3.writeObject(Main.completedBids);
@@ -578,7 +538,6 @@ public class MainController {
             System.out.println("Error writing this file : " + e);
         }
     }
-
 
     public void SearchSoldBids() {
 
@@ -592,15 +551,12 @@ public class MainController {
 
                         System.out.println(selectedLot.toString());
 
-
                     }
                 }
-
 
             }
         }
     }
-
 
 }
 

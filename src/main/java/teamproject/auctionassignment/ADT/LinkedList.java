@@ -26,6 +26,7 @@ public class LinkedList<E> implements Iterable<E> {
         }
         return node.getContents();
     }
+    
 
 
 
